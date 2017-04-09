@@ -1,0 +1,8 @@
+# Демонстрация первых шагов в программирование на языке Python
+
+print("123!!!")
+input("Press Enter for continue...")
+
+
+name = input("Введите имя ")
+print("Привет ", name,".")

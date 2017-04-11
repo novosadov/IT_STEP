@@ -110,103 +110,109 @@ def close():
 root = Tk()
 
 root.title("Калькулятор")
-root.geometry("375x480")
+root.geometry("375x400")
 
-canvas = Canvas(root, bg="azure2", width = 9000, height = 6000,)
+canvas = Canvas(root, bg="bisque2",bd=30, width = 9000, height = 6000)
 canvas.place(x=0,y=0)
 
-button1 = Button(canvas, width=5, height=2, bg="red", text=u" ON/C ", command=button_clicked1)
-button1.place(x=20,y=420)
 
-button2 = Button(canvas, width=5, height=2, bg="cyan", text=u" 0 ", command=button_clicked2)
-button2.place(x=90,y=420)
+ent = Entry(canvas, width=52, bd=10)
+ent.place(x=20,y=20)
 
-button3 = Button(canvas, width=5, height=2, bg="cyan", text=u" 00 ", command=button_clicked3)
-button3.place(x=140,y=420)
 
-button4 = Button(canvas, width=5, height=2, bg="cyan", text=u" . ", command=button_clicked4)
-button4.place(x=190,y=420)
 
-button5 = Button(canvas, width=5, height=2, bg="red", text=u" CE ", command=button_clicked5)
-button5.place(x=20,y=375)
+button1 = Button(canvas, width=5, height=2, bg="red",bd=4, text=u" ON/C ", command=button_clicked1)
+button1.place(x=20,y=340)
 
-button6 = Button(canvas, width=5, height=2, bg="cyan", text=u" 1 ", command=button_clicked6)
-button6.place(x=90,y=375)
+button2 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 0 ", command=button_clicked2)
+button2.place(x=90,y=340)
 
-button7 = Button(canvas, width=5, height=2, bg="cyan", text=u" 2 ", command=button_clicked7)
-button7.place(x=140,y=375)
+button3 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 00 ", command=button_clicked3)
+button3.place(x=140,y=340)
 
-button8 = Button(canvas, width=5, height=2, bg="cyan", text=u" 3 ", command=button_clicked8)
-button8.place(x=190,y=375)
+button4 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" . ", command=button_clicked4)
+button4.place(x=190,y=340)
 
-button9 = Button(canvas, width=5, height=2, bg="cyan", text=u" -> ", command=button_clicked9)
-button9.place(x=20,y=330)
+button5 = Button(canvas, width=5, height=2, bg="red",bd=4, text=u" CE ", command=button_clicked5)
+button5.place(x=20,y=295)
 
-button10 = Button(canvas, width=5, height=2, bg="cyan", text=u" 4 ", command=button_clicked10)
-button10.place(x=90,y=330)
+button6 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 1 ", command=button_clicked6)
+button6.place(x=90,y=295)
 
-button11 = Button(canvas, width=5, height=2, bg="cyan", text=u" 5 ", command=button_clicked11)
-button11.place(x=140,y=330)
+button7 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 2 ", command=button_clicked7)
+button7.place(x=140,y=295)
 
-button12 = Button(canvas, width=5, height=2, bg="cyan", text=u" 6 ", command=button_clicked12)
-button12.place(x=190,y=330)
+button8 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 3 ", command=button_clicked8)
+button8.place(x=190,y=295)
 
-button13 = Button(canvas, width=5, height=2, bg="cyan", text=u" OFF ", command=button_clicked13)
-button13.place(x=20,y=285)
+button9 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" -> ", command=button_clicked9)
+button9.place(x=20,y=250)
 
-button14 = Button(canvas, width=5, height=2, bg="cyan", text=u" 7 ", command=button_clicked14)
-button14.place(x=90,y=285)
+button10 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 4 ", command=button_clicked10)
+button10.place(x=90,y=250)
 
-button15 = Button(canvas, width=5, height=2, bg="cyan", text=u" 8 ", command=button_clicked15)
-button15.place(x=140,y=285)
+button11 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 5 ", command=button_clicked11)
+button11.place(x=140,y=250)
 
-button16 = Button(canvas, width=5, height=2, bg="cyan", text=u" 9 ", command=button_clicked16)
-button16.place(x=190,y=285)
+button12 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 6 ", command=button_clicked12)
+button12.place(x=190,y=250)
 
-button17 = Button(canvas, width=5, height=2, bg="cyan", text=u" +/- ", command=button_clicked17)
-button17.place(x=140,y=225)
+button13 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" OFF ", command=button_clicked13)
+button13.place(x=20,y=205)
 
-button18 = Button(canvas, width=5, height=2, bg="cyan", text=u" MRC ", command=button_clicked18)
-button18.place(x=190,y=225)
+button14 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 7 ", command=button_clicked14)
+button14.place(x=90,y=205)
 
-button19 = Button(canvas, width=5, height=2, bg="cyan", text=u" M- ", command=button_clicked19)
-button19.place(x=260,y=225)
+button15 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 8 ", command=button_clicked15)
+button15.place(x=140,y=205)
 
-button20 = Button(canvas, width=5, height=2, bg="cyan", text=u" M+ ", command=button_clicked20)
-button20.place(x=310,y=225)
+button16 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 9 ", command=button_clicked16)
+button16.place(x=190,y=205)
 
-button21 = Button(canvas, width=5, height=2, bg="cyan", text=u" % ", command=button_clicked21)
-button21.place(x=260,y=285)
+button17 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" +/- ", command=button_clicked17)
+button17.place(x=140,y=145)
 
-button22 = Button(canvas, width=5, height=2, bg="cyan", text=u" √ ", command=button_clicked22)
-button22.place(x=310,y=285)
+button18 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" MRC ", command=button_clicked18)
+button18.place(x=190,y=145)
 
-button23 = Button(canvas, width=5, height=2, bg="cyan", text=u" X ", command=button_clicked23)
-button23.place(x=260,y=330)
+button19 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" M- ", command=button_clicked19)
+button19.place(x=260,y=145)
 
-button24 = Button(canvas, width=5, height=2, bg="cyan", text=u" ÷ ", command=button_clicked24)
-button24.place(x=310,y=330)
+button20 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" M+ ", command=button_clicked20)
+button20.place(x=310,y=145)
 
-button25 = Button(canvas, width=5, height=2, bg="cyan", text=u" - ", command=button_clicked25)
-button25.place(x=310,y=375)
+button21 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" % ", command=button_clicked21)
+button21.place(x=260,y=205)
 
-button26 = Button(canvas, width=5, height=2, bg="cyan", text=u" = ", command=button_clicked26)
-button26.place(x=310,y=420)
+button22 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" √ ", command=button_clicked22)
+button22.place(x=310,y=205)
 
-button27 = Button(canvas, width=5, height=5, bg="cyan", text=u" + ", command=button_clicked27)
-button27.place(x=260,y=375)
+button23 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" X ", command=button_clicked23)
+button23.place(x=260,y=250)
 
-button28 = Button(canvas, width=15, height=2, bg="cyan", text=u" Калькулятор\n онлайн ", command=button_clicked28)
-button28.place(x=20,y=225)
+button24 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" ÷ ", command=button_clicked24)
+button24.place(x=310,y=250)
 
-button29 = Button(canvas, width=15, height=2, bg="cyan", text=u" Ежедневный\n гороскоп ", command=button_clicked29)
-button29.place(x=20,y=165)
+button25 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" - ", command=button_clicked25)
+button25.place(x=310,y=295)
 
-button30 = Button(canvas, width=12, height=2, bg="cyan", text=u" Прогноз\n погоды ", command=button_clicked30)
-button30.place(x=140,y=165)
+button26 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" = ", command=button_clicked26)
+button26.place(x=310,y=340)
 
-button31 = Button(canvas, width=15, height=2, bg="cyan", text=u" Курсы\n валют ", command=button_clicked31)
-button31.place(x=240,y=165)
+button27 = Button(canvas, width=5, height=5, bg="cyan",bd=4, text=u" + ", command=button_clicked27)
+button27.place(x=260,y=295)
+
+button28 = Button(canvas, width=15, height=2, bg="cyan",bd=4, text=u" Калькулятор\n онлайн ", command=button_clicked28)
+button28.place(x=20,y=145)
+
+button29 = Button(canvas, width=15, height=2, bg="cyan",bd=4,text=u" Ежедневный\n гороскоп ", command=button_clicked29)
+button29.place(x=20,y=85)
+
+button30 = Button(canvas, width=12, height=2, bg="cyan",bd=4, text=u" Прогноз\n погоды ", command=button_clicked30)
+button30.place(x=140,y=85)
+
+button31 = Button(canvas, width=15, height=2, bg="cyan",bd=4, text=u" Курсы\n валют ", command=button_clicked31)
+button31.place(x=240,y=85)
 
 
 

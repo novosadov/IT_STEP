@@ -8,8 +8,11 @@ int main()
 	setlocale(LC_ALL, "rus");
 
 	FILE* file = fopen("c:\\windows\\system.ini", "r");   //открывает файл
-	char*  buff = malloc(1024);
-	while (fgets(buff, 1024, file))
+
+	fseek(file, -25, SEEK_END);      //переместить вконец файла и отступить 25 от конца файла
+
+	char*  buff = malloc(256);
+	while (fgets(buff, 256, file))
 	{
 		printf(" %s\n", buff);
 	}

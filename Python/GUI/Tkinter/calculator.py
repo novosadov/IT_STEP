@@ -2,56 +2,62 @@ from tkinter import *
 from tkinter.messagebox import *
 from tkinter import messagebox
 import webbrowser
+from math import *
+
+
+def evaluate(event):
+    res.configure(str(eval(entry.get())))
 
 
 
 def button_clicked1():
-    close_win()
+    ent.delete(0, END)    
 
 def button_clicked2():
-    close_win()
+    ent.insert(35, "0")
 
 def button_clicked3():
-    close_win()
+    ent.insert(35, "00")
 
 def button_clicked4():
-    close_win()
+    ent.insert(35, ",")
 
 def button_clicked5():
-    close_win()
+    ent.delete(0, END)   
 
 def button_clicked6():
-    close_win()
+    ent.insert(35, "1")
 
 def button_clicked7():
-    close_win()
+    ent.insert(35, "2")
 
 def button_clicked8():
-    close_win()
+    ent.insert(35, "3")
 
 def button_clicked9():
     close_win()
 
 def button_clicked10():
-    close_win()
+    ent.insert(35, "4")
 
 def button_clicked11():
-    close_win()
+    ent.insert(35, "5")
 
 def button_clicked12():
-    close_win()
+    ent.insert(35, "6")
 
 def button_clicked13():
-    close_win()
+    ent.delete(0, END)
+    
 
 def button_clicked14():
-    close_win()
+    ent.insert(35, "7")
 
 def button_clicked15():
-    close_win()
+    ent.insert(35, "8")
 
 def button_clicked16():
-    close_win()
+    ent.insert(35, "9")
 
 def button_clicked17():
     close_win()
@@ -72,19 +78,20 @@ def button_clicked22():
     close_win()
 
 def button_clicked23():
-    close_win()
-
+    ent.insert(35, "*")
 def button_clicked24():
-    close_win()
+    ent.insert(35, "/")
 
 def button_clicked25():
-    close_win()
+    ent.insert(35, "-")
 
 def button_clicked26():
-    close_win()
-
+    res = eval(ent.get())
+    ent.delete(0, END)
+    ent.insert(35, res)    
+    
 def button_clicked27():
-    close_win()
+    ent.insert(35, "+")
 
 def button_clicked28():
      webbrowser.open('''http://www.calculator888.ru/''')
@@ -109,6 +116,7 @@ def close():
 
 root = Tk()
 
+
 root.title("Калькулятор")
 root.geometry("375x400")
 
@@ -116,8 +124,10 @@ canvas = Canvas(root, bg="bisque2",bd=30, width = 9000, height = 6000)
 canvas.place(x=0,y=0)
 
 
-ent = Entry(canvas, width=52, bd=10)
+ent = Entry(canvas, width=52, bd=10, justify=RIGHT )
 ent.place(x=20,y=20)
+
+
 
 
 

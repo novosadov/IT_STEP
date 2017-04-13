@@ -96,7 +96,7 @@ def button_clicked30():
      webbrowser.open('''http://www.pogoda.by/''')
 
 def button_clicked31():
-     webbrowser.open('''https://www.nbrb.by/statistics/rates/ratesDaily.asp''')
+     webbrowser.open('''https://vk.com/atemik84''')
 
 
 def close_win():
@@ -211,7 +211,7 @@ button29.place(x=20,y=85)
 button30 = Button(canvas, width=12, height=2, bg="cyan",bd=4, text=u" Прогноз\n погоды ", command=button_clicked30)
 button30.place(x=140,y=85)
 
-button31 = Button(canvas, width=15, height=2, bg="cyan",bd=4, text=u" Курсы\n валют ", command=button_clicked31)
+button31 = Button(canvas, width=15, height=2, bg="cyan",bd=4, text=u" Помощь ", command=button_clicked31)
 button31.place(x=240,y=85)
 
 

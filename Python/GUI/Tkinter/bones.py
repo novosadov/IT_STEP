@@ -1,289 +1,236 @@
 from tkinter import *
 from tkinter.messagebox import *
 from tkinter import messagebox
-import random
-import time
+import webbrowser
+from math import *
+
+countminus=2
 
 
-# Не знаю зачем, но вдруг пригодиться, после нажатия на кнопку выводит надпись "Hello World"
-def hello():
-   messagebox.showinfo("Say Hello", "Hello World")
-   creat_win()
-   
-def hello2():
-   messagebox.showinfo("Say Hello2", "Hello World2")
-   creat_win()
+def evaluate(event):
+    res.configure(str(eval(entry.get())))
 
-def hello3():
-    kubik1 = random.randint(1, 6)
-    kubik2 = random.randrange(6) + 1
-    if kubik1==1:
-        kubik_edenica()       
 
-    if kubik1==2:
-        kubik_dvoika()        
-
-    if kubik1==3:
-        kubik_troika()
-
-    if kubik1==4:
-        kubik_chetverka()
-
-    if kubik1==5:
-        kubik_peterka()
-        
-    if kubik1==6:
-       kubik_shesterka()
-       
-
-    if kubik2==1:
-        kubik_edenica2()       
-
-    if kubik2==2:
-        kubik_dvoika2()        
-
-    if kubik2==3:
-        kubik_troika2()
-
-    if kubik2==4:
-        kubik_chetverka2()
-
-    if kubik2==5:
-        kubik_peterka2()
-        
-    if kubik2==6:
-       kubik_shesterka2()
-
-    
-    
-
-   
 def button_clicked1():
-    #При нажатии на кнопку бросокгенерируются случайные числа
-    #отрисовываются кубики на экране
-    kubik1 = random.randint(1, 6)
-    kubik2 = random.randrange(6) + 1
-    if kubik1==1:
-        kubik_edenica()       
+    ent.delete(0, END)    
 
-    if kubik1==2:
-        kubik_dvoika()        
-
-    if kubik1==3:
-        kubik_troika()
-
-    if kubik1==4:
-        kubik_chetverka()
-
-    if kubik1==5:
-        kubik_peterka()
-        
-    if kubik1==6:
-       kubik_shesterka()
-       
-
-    if kubik2==1:
-        kubik_edenica2()       
-
-    if kubik2==2:
-        kubik_dvoika2()        
-
-    if kubik2==3:
-        kubik_troika2()
-
-    if kubik2==4:
-        kubik_chetverka2()
-
-    if kubik2==5:
-        kubik_peterka2()
-        
-    if kubik2==6:
-       kubik_shesterka2()    
-        
-    total = kubik1 + kubik2 # Общее количество очков с двух кубиков
-
-
-    #Вы водит на экран количество очков
-    canvas.create_text(20,200,text="Очки первого кубика:",
-       font="Verdana 12",anchor="w",justify=CENTER,fill="red")
-    canvas.create_text(250,200,text=kubik1,
-       font="Verdana 12",anchor="w",justify=CENTER,fill="red")
-    canvas.create_text(20,220,text="Очки второго кубика:",
-       font="Verdana 12",anchor="w",justify=CENTER,fill="red")
-    canvas.create_text(250,220,text=kubik2,
-       font="Verdana 12",anchor="w",justify=CENTER,fill="red")
-    canvas.create_text(20,240,text="Сумма очков:",
-       font="Verdana 12",anchor="w",justify=CENTER,fill="red")    
-    canvas.create_text(250,240,text=total,
-       font="Verdana 12",anchor="w",justify=CENTER,fill="red") 
-
-# Кнопка очищает полностью игровое поле (фиг знает зачем, но вдруг пригодиться)
 def button_clicked2():
-    if askyesno("Очистить", "Вы действительно хотите всё очистить?"):
-        canvas.delete("all")
-    
-# Выход из приложения
+    ent.insert(35, "0")
+
 def button_clicked3():
+    ent.insert(35, "00")
+
+def button_clicked4():
+    ent.insert(35, ".")
+
+def button_clicked5():
+    ent.delete(0, END)   
+
+def button_clicked6():
+    ent.insert(35, "1")
+
+def button_clicked7():
+    ent.insert(35, "2")
+
+def button_clicked8():
+    ent.insert(35, "3")
+
+def button_clicked9():
+    ent.delete(0, END)
+
+def button_clicked10():
+    ent.insert(35, "4")
+
+def button_clicked11():
+    ent.insert(35, "5")
+
+def button_clicked12():
+    ent.insert(35, "6")
+
+def button_clicked13():
     close_win()
     
 
-# Выход из приложения
+def button_clicked14():
+    ent.insert(35, "7")
+
+def button_clicked15():
+    ent.insert(35, "8")
+
+def button_clicked16():
+    ent.insert(35, "9")
+
+def button_clicked17():
+    countminus =+ 1
+    if (countminus % 2) != 0:
+        ent.insert(0, "-")
+    if (countminus % 2) == 0:
+        ent.delete(0, +1)    
+    
+    
+def button_clicked18():
+    close_win()
+
+def button_clicked19():
+    close_win()
+
+def button_clicked20():
+    close_win()
+
+def button_clicked21():
+    close_win()
+
+def button_clicked22():
+    close_win()
+
+def button_clicked23():
+    ent.insert(35, "*")
+def button_clicked24():
+    ent.insert(35, "/")
+
+def button_clicked25():
+    ent.insert(35, "-")
+
+def button_clicked26():
+    res = eval(ent.get())
+    ent.delete(0, END)
+    ent.insert(35, res)    
+    
+def button_clicked27():
+    ent.insert(35, "+")
+
+def button_clicked28():
+     webbrowser.open('''http://www.calculator888.ru/''')
+
+def button_clicked29():
+     webbrowser.open('''http://orakul.com/''')
+
+def button_clicked30():
+     webbrowser.open('''http://www.pogoda.by/''')
+
+def button_clicked31():
+     webbrowser.open('''https://vk.com/atemik84''')
+
+
 def close_win():
      if askyesno("Exit", "Как уже уходите?"):
           root.destroy()
-         
-
-# Закрытие окна
+          
 def close():
     root.destroy()
-    root.quit()        
+    root.quit()          
 
-    
-root=Tk()
-root.title("Игра кости")
-root.geometry('1000x600')
+root = Tk()
 
 
-# Меню
-m = Menu(root)
-root.config(menu=m) 
-fm = Menu(m)
-m.add_cascade(label="Файл",menu=fm)
-hm = Menu(m)
-fm.add_command(label="Exit",command=close_win)
-m.add_cascade(label="Помощь",menu=hm)
+root.title("Калькулятор")
+root.geometry("375x400")
 
-txt = Text(root,width=40,height=15,font="12")
-txt.pack()
+canvas = Canvas(root, bg="bisque2",bd=30, width = 9000, height = 6000)
+canvas.place(x=0,y=0)
 
 
-# Кнопка выход из приложения
-button3 = Button(root, width=12, height=2, bg="red", text=u"  Выход ", command=button_clicked3)
-button3.place(x=0,y=0)
-
-# Игровое поле (можно изменить цвет, размер и т.д.
-canvas = Canvas(root, bg="Medium Spring Green", width = 900, height = 600,)
-canvas.place(x=100,y=0)
-
-
-
-
-# Создаёт надпись на игровом поле, может и не надо будет (фиг знает)
-canvas.create_text(200,20,text="Для начала игры выберите противника\n",
-       font="Verdana 12",anchor="w",justify=CENTER,fill="red")
-
-
-#Выводит дочернее окно пока не вкурсе как его на передний план выкинуть
-def creat_win():
-    win = Toplevel(canvas,relief=SUNKEN,bd=10,bg="lightblue")
-    win.title("Дочернее окно")
-    win.minsize(width=1000,height=1000)    
-    canvas2 = Canvas(win, bg="Medium Spring Green", width = 900, height = 600,)
-    canvas2.place(x=100,y=0)
-    button1 = Button(win, width=12, height=2, bg="green", text=u"\nБросок\n", command=button_clicked1)
-    button1.place(x=0,y=0)
-    button2 = Button(win, width=12, height=2, bg="red", text=u"  Очистить  \n всё ", command=button_clicked2)
-    button2.place(x=0,y=40)
-
-
-
-
-# Вообще не знаю нафига эта кнопка )))))
-B1 = Button(canvas, text = "Игра с компьютером", command = hello)
-B1.place(x = 250,y = 250)
-
-B2 = Button(canvas, text = "Игра с между двумя пользователями", command = hello2)
-B2.place(x = 400,y = 250)
+ent = Entry(canvas, width=52, bd=10, justify=RIGHT )
+ent.place(x=20,y=20)
 
 
 
 
 
-# Отрисовка кубиков
-def kubik_edenica():
-    canvas.create_rectangle(50, 50, 150, 150, fill="Cornflower Blue")     
-    canvas.create_oval([90,90],[110,110],fill="black")
+button1 = Button(canvas, width=5, height=2, bg="red",bd=4, text=u" ON/C ", command=button_clicked1)
+button1.place(x=20,y=340)
 
-def kubik_edenica2():
-    canvas.create_rectangle(250, 50, 350, 150, fill="Cornflower Blue")
-    canvas.create_oval([290,90],[310,110],fill="black")
+button2 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 0 ", command=button_clicked2)
+button2.place(x=90,y=340)
 
-def kubik_dvoika():
-    canvas.create_rectangle(50, 50, 150, 150, fill="Cornflower Blue") 
-    canvas.create_oval([60,60],[80,80],fill="black")
-    canvas.create_oval([120,120],[140,140],fill="black")
+button3 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 00 ", command=button_clicked3)
+button3.place(x=140,y=340)
 
-def kubik_dvoika2():
-    canvas.create_rectangle(250, 50, 350, 150, fill="Cornflower Blue")
-    canvas.create_oval([260,60],[280,80],fill="black")
-    canvas.create_oval([320,120],[340,140],fill="black")
-    
+button4 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" . ", command=button_clicked4)
+button4.place(x=190,y=340)
 
-def kubik_troika():
-    canvas.create_rectangle(50, 50, 150, 150, fill="Cornflower Blue") 
-    canvas.create_oval([60,60],[80,80],fill="black")
-    canvas.create_oval([120,120],[140,140],fill="black")    
-    canvas.create_oval([90,90],[110,110],fill="black")
+button5 = Button(canvas, width=5, height=2, bg="red",bd=4, text=u" CE ", command=button_clicked5)
+button5.place(x=20,y=295)
 
-def kubik_troika2():
-    canvas.create_rectangle(250, 50, 350, 150, fill="Cornflower Blue")
-    canvas.create_oval([260,60],[280,80],fill="black")
-    canvas.create_oval([320,120],[340,140],fill="black")    
-    canvas.create_oval([290,90],[310,110],fill="black")    
+button6 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 1 ", command=button_clicked6)
+button6.place(x=90,y=295)
+
+button7 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 2 ", command=button_clicked7)
+button7.place(x=140,y=295)
+
+button8 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 3 ", command=button_clicked8)
+button8.place(x=190,y=295)
+
+button9 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" -> ", command=button_clicked9)
+button9.place(x=20,y=250)
+
+button10 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 4 ", command=button_clicked10)
+button10.place(x=90,y=250)
+
+button11 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 5 ", command=button_clicked11)
+button11.place(x=140,y=250)
+
+button12 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 6 ", command=button_clicked12)
+button12.place(x=190,y=250)
+
+button13 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" OFF ", command=button_clicked13)
+button13.place(x=20,y=205)
+
+button14 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 7 ", command=button_clicked14)
+button14.place(x=90,y=205)
+
+button15 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 8 ", command=button_clicked15)
+button15.place(x=140,y=205)
+
+button16 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" 9 ", command=button_clicked16)
+button16.place(x=190,y=205)
+
+button17 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" +/- ", command=button_clicked17)
+button17.place(x=140,y=145)
+
+button18 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" MRC ", command=button_clicked18)
+button18.place(x=190,y=145)
+
+button19 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" M- ", command=button_clicked19)
+button19.place(x=260,y=145)
+
+button20 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" M+ ", command=button_clicked20)
+button20.place(x=310,y=145)
+
+button21 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" % ", command=button_clicked21)
+button21.place(x=260,y=205)
+
+button22 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" √ ", command=button_clicked22)
+button22.place(x=310,y=205)
+
+button23 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" X ", command=button_clicked23)
+button23.place(x=260,y=250)
+
+button24 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" ÷ ", command=button_clicked24)
+button24.place(x=310,y=250)
+
+button25 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" - ", command=button_clicked25)
+button25.place(x=310,y=295)
+
+button26 = Button(canvas, width=5, height=2, bg="cyan",bd=4, text=u" = ", command=button_clicked26)
+button26.place(x=310,y=340)
+
+button27 = Button(canvas, width=5, height=5, bg="cyan",bd=4, text=u" + ", command=button_clicked27)
+button27.place(x=260,y=295)
+
+button28 = Button(canvas, width=15, height=2, bg="cyan",bd=4, text=u" Калькулятор\n онлайн ", command=button_clicked28)
+button28.place(x=20,y=145)
+
+button29 = Button(canvas, width=15, height=2, bg="cyan",bd=4,text=u" Ежедневный\n гороскоп ", command=button_clicked29)
+button29.place(x=20,y=85)
+
+button30 = Button(canvas, width=12, height=2, bg="cyan",bd=4, text=u" Прогноз\n погоды ", command=button_clicked30)
+button30.place(x=140,y=85)
+
+button31 = Button(canvas, width=15, height=2, bg="cyan",bd=4, text=u" Помощь ", command=button_clicked31)
+button31.place(x=240,y=85)
 
 
-def kubik_chetverka():
-    canvas.create_rectangle(50, 50, 150, 150, fill="Cornflower Blue") 
-    canvas.create_oval([60,60],[80,80],fill="black")
-    canvas.create_oval([120,120],[140,140],fill="black")
-    canvas.create_oval([60,120],[80,140],fill="black")
-    canvas.create_oval([120,60],[140,80],fill="black")
 
-def kubik_chetverka2():
-    canvas.create_rectangle(250, 50, 350, 150, fill="Cornflower Blue")
-    canvas.create_oval([260,60],[280,80],fill="black")
-    canvas.create_oval([320,120],[340,140],fill="black")
-    canvas.create_oval([260,120],[280,140],fill="black")
-    canvas.create_oval([320,60],[340,80],fill="black")
-   
-   
-
-def kubik_peterka():
-    canvas.create_rectangle(50, 50, 150, 150, fill="Cornflower Blue") 
-    canvas.create_oval([60,60],[80,80],fill="black")
-    canvas.create_oval([120,120],[140,140],fill="black")
-    canvas.create_oval([60,120],[80,140],fill="black")
-    canvas.create_oval([120,60],[140,80],fill="black")
-    canvas.create_oval([90,90],[110,110],fill="black")
-
-def kubik_peterka2():
-    canvas.create_rectangle(250, 50, 350, 150, fill="Cornflower Blue")
-    canvas.create_oval([260,60],[280,80],fill="black")
-    canvas.create_oval([320,120],[340,140],fill="black")
-    canvas.create_oval([260,120],[280,140],fill="black")
-    canvas.create_oval([320,60],[340,80],fill="black")
-    canvas.create_oval([290,90],[310,110],fill="black")
-
-
-def kubik_shesterka():
-    canvas.create_rectangle(50, 50, 150, 150, fill="Cornflower Blue")    
-    canvas.create_oval([60,60],[80,80],fill="black")
-    canvas.create_oval([120,120],[140,140],fill="black")
-    canvas.create_oval([60,120],[80,140],fill="black")
-    canvas.create_oval([120,60],[140,80],fill="black")
-    canvas.create_oval([60,90],[80,110],fill="black")
-    canvas.create_oval([120,90],[140,110],fill="black")
-    
-
-def kubik_shesterka2():
-    canvas.create_rectangle(250, 50, 350, 150, fill="Cornflower Blue") 
-    canvas.create_oval([260,60],[280,80],fill="black")
-    canvas.create_oval([320,120],[340,140],fill="black")
-    canvas.create_oval([260,120],[280,140],fill="black")
-    canvas.create_oval([320,60],[340,80],fill="black")
-    canvas.create_oval([260,90],[280,110],fill="black")
-    canvas.create_oval([320,90],[340,110],fill="black")
-    
-
-    
 root.mainloop()
+

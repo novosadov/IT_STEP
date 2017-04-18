@@ -8,8 +8,6 @@ from math import *
 def evaluate(event):
     res.configure(str(eval(entry.get())))
 
-
-
 def button_clicked1():
     ent.delete(0, END)    
 
@@ -19,8 +17,8 @@ def button_clicked2():
 def button_clicked3():
     ent.insert(35, "00")
 
-def button_clicked4():
-    ent.insert(35, ",")
+def button_clicked4():    
+    ent.insert(35, ".")   
 
 def button_clicked5():
     ent.delete(0, END)   
@@ -35,7 +33,7 @@ def button_clicked8():
     ent.insert(35, "3")
 
 def button_clicked9():
-    close_win()
+    ent.delete(0, END)
 
 def button_clicked10():
     ent.insert(35, "4")
@@ -47,8 +45,7 @@ def button_clicked12():
     ent.insert(35, "6")
 
 def button_clicked13():
-    ent.delete(0, END)
-    
+    close_win()    
 
 def button_clicked14():
     ent.insert(35, "7")
@@ -60,25 +57,26 @@ def button_clicked16():
     ent.insert(35, "9")
 
 def button_clicked17():
-    close_win()
-
+    webbrowser.open('''http://www.calculator888.ru/''')      
+    
 def button_clicked18():
-    close_win()
+   webbrowser.open('''http://www.calculator888.ru/''') 
 
 def button_clicked19():
-    close_win()
+   webbrowser.open('''http://www.calculator888.ru/''') 
 
 def button_clicked20():
-    close_win()
+    webbrowser.open('''http://www.calculator888.ru/''')
 
 def button_clicked21():
-    close_win()
+    ent.insert(35, "%")
 
 def button_clicked22():
-    close_win()
+    ent.insert(35, "**")
 
 def button_clicked23():
     ent.insert(35, "*")
+    
 def button_clicked24():
     ent.insert(35, "/")
 
@@ -116,19 +114,14 @@ def close():
 
 root = Tk()
 
-
 root.title("Калькулятор")
 root.geometry("375x400")
 
 canvas = Canvas(root, bg="bisque2",bd=30, width = 9000, height = 6000)
 canvas.place(x=0,y=0)
 
-
 ent = Entry(canvas, width=52, bd=10, justify=RIGHT )
 ent.place(x=20,y=20)
-
-
-
 
 
 button1 = Button(canvas, width=5, height=2, bg="red",bd=4, text=u" ON/C ", command=button_clicked1)
@@ -223,7 +216,5 @@ button30.place(x=140,y=85)
 
 button31 = Button(canvas, width=15, height=2, bg="cyan",bd=4, text=u" Помощь ", command=button_clicked31)
 button31.place(x=240,y=85)
-
-
 
 root.mainloop()

@@ -7,7 +7,7 @@
 #arg " start"); //Решётка превращает значение в строку, то есть #arg == "arg"
 
 #define LOG_FN_FINISH(arg) printf("[%d] %s\n", time(0),\
-#arg " end");
+__FUNCTION__ " end"); //То же что и решётка превращвет значение в строку
 
 
 void foo();

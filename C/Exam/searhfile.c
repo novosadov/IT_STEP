@@ -15,6 +15,13 @@ int main()
 		printf("Files not found\n");
 		return 1;
 	}
-	printf("File found\n");
+	do
+	{
+		printf("File found %s\n", found.cFileName);
+	} while (FindNextFileA(findeResult, &found));
+	
+
+	FindClose(findeResult);
+
 	return 0;
 }

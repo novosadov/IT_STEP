@@ -34,6 +34,7 @@
 Очистка файла: можно открыть файл в режиме "w" и закрыть.
 */
 
+
 struct Recipe
 {
 	char name[256];
@@ -41,6 +42,7 @@ struct Recipe
 	char text[1024];
 	char reiting[10];
 };
+
 
 enum Menu
 {
@@ -94,7 +96,6 @@ void menu(struct Recipe recipe[])
 			return 0;
 			break;
 
-				
 		case AddRecipe:
 			printf("Enter name disk\n");
 			fgets(disk, 50, stdin);
@@ -121,7 +122,7 @@ void menu(struct Recipe recipe[])
 			strcat(dir, "\\");
 			strcat(dir, fname);
 
-			fp = fopen(dir, "w");
+			fp = fopen(dir, "wb");
 			if (fp == NULL)
 			{
 				printf("Error.Ne udalos otkrit fail!\n");
@@ -144,7 +145,6 @@ void menu(struct Recipe recipe[])
 			count++;
 			break;
 
-				
 		case VieRecipe:
 			printf("Enter name disk\n");
 			fgets(disk, 50, stdin);
@@ -163,6 +163,7 @@ void menu(struct Recipe recipe[])
 			strcat(dir, "\\");
 			strcpy(dir2, dir);
 			strcat(dir2, "*.recipe");
+
 
 			findeResult = FindFirstFileA(dir2,
 				&found);
@@ -185,7 +186,7 @@ void menu(struct Recipe recipe[])
 			strcat(fname, ".recipe");
 			strcat(dir, fname);
 
-			fp = fopen(dir, "r");
+			fp = fopen(dir, "rb");
 			if (fp == NULL)
 			{
 				printf("Error.Ne udalos otkrit fail!\n");
@@ -207,7 +208,6 @@ void menu(struct Recipe recipe[])
 			fclose(fp);
 			break;
 
-				
 		case EditRecipe:
 			printf("Enter name disk\n");
 			fgets(disk, 50, stdin);
@@ -226,6 +226,7 @@ void menu(struct Recipe recipe[])
 			strcat(dir, "\\");
 			strcpy(dir2, dir);
 			strcat(dir2, "*.recipe");
+
 
 			findeResult = FindFirstFileA(dir2,
 				&found);
@@ -248,7 +249,7 @@ void menu(struct Recipe recipe[])
 			strcat(fname, ".recipe");
 			strcat(dir, fname);
 
-			fp = fopen(dir, "a");
+			fp = fopen(dir, "ab");
 			if (fp == NULL)
 			{
 				printf("Error.Ne udalos otkrit fail!\n");
@@ -266,7 +267,6 @@ void menu(struct Recipe recipe[])
 			fclose(fp);
 			break;
 
-				
 		case DelReciep:
 			printf("Enter name disk\n");
 			fgets(disk, 50, stdin);

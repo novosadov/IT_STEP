@@ -78,8 +78,8 @@ void menu(struct Recipe recipe[])
 	char* dir2 = (char *)malloc(256);
 	char* text = (char*)malloc(10240);
 
-	WIN32_FIND_DATAA found;
-	HANDLE findeResult;
+	WIN32_FIND_DATAA found; //для поиска файлов
+	HANDLE findeResult; 
 
 	while (true)
 	{

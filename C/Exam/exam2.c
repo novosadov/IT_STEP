@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-//#include<stdbool.h>
+#include<stdbool.h>
 #include<direct.h> //Для создания папки
 #include<Windows.h>
 

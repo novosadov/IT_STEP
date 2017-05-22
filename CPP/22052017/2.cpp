@@ -1,5 +1,5 @@
 #include<iostream>
-#include "ArrayUtils.h"
+
 #include<locale.h>
 
 struct Point

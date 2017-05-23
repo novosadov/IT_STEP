@@ -5,7 +5,11 @@
 
 int main()
 {	
-	Distance d1;
+	
+	Distance d(3, 4.5);
+	d.Print();
+	
+	/*Distance d1;
 	d1.Read();
 	Distance d2;
 	d2.Read();
@@ -37,7 +41,7 @@ int main()
 
 	result.Print();
 	delete[] array;
-
+*/
 	
 	return 0;
 }

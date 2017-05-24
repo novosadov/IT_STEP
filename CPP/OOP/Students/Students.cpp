@@ -37,7 +37,7 @@ char const* Student::GetName() const
 	return m_name;
 }
 
-int Student::GetRating()
+int Student::GetRating() const
 {
 	return m_rating;
 }
@@ -65,7 +65,19 @@ void Student::Read()
 	std::cin >> m_rating;
 }
 
-void Student::Print()
+void Student::Print() const
 {
 	std::cout << m_name << ": " << m_rating << "\n";
+}
+
+
+Student& Student::operator=(Student& student)
+{
+	if (this == &student)
+	{
+		return *this;
+	}
+	this->SetName(student.GetName());
+	this->m_rating = student.GetRating();
+	return *this;
 }

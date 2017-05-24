@@ -49,16 +49,13 @@ int main()
 
 	Group g;
 	Student s1(g, "Ivanov", 6);
-	Student s2 = s1;
+	Student s2(g);
+	s2 = s1;
 	s2.SetName("Petrov");
-	s2.SetRating(5);
+	
 	s1.Print();
-	s2.Print();
-
-	PrintMaxRaiting(s1, s2);
-
-	Student s4 = Create(g, "Sidorov");
-	s4.Print();
+	s2.Print();	
+	
 
 	return 0;
 }

@@ -42,15 +42,15 @@ Distance::Distance(int feet) :
 {
 }
 
-//int Distance::GetFeet() const
-//{
-//	return m_feet;
-//}
-//
-//float Distance::GetInches() const
-//{
-//	return m_inches;
-//}
+int Distance::GetFeet() 
+{
+	return m_feet;
+}
+
+float Distance::GetInches() 
+{
+	return m_inches;
+}
 
 void Distance::SetData(int feet, float inches)
 {
@@ -63,12 +63,12 @@ void Distance::Read()
 	std::cin >> m_feet >> m_inches;
 }
 
-//void Distance::Print() const
-//{
-//	std::cout << m_feet << "\'" << m_inches << "\"" << std::endl;
-//}
+void Distance::Print() 
+{
+	std::cout << m_feet << "\'" << m_inches << "\"" << std::endl;
+}
 
-/*void Distance::Add(Distance const& d)
+void Distance::Add(Distance const& d)
 {
 m_feet += d.m_feet;
 m_inches += d.m_inches;
@@ -88,7 +88,7 @@ m_inches += 12.0f;
 m_feet -= 1;
 }
 }
-Distance Summ(Distance const& d1, Distance const& d2)
+/*Distance Summ(Distance const& d1, Distance const& d2)
 {
 Distance result = d1;
 result.Add(d2);

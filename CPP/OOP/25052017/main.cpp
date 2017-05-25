@@ -86,16 +86,7 @@ int main()
 	std::cout << "count = " << Student::GetStudentCount() << "\n";
 
 	A a(1);
-	
-	return 0;
-}
-		Student s4 = Create(g, "Sidorov");
-		s4.Print();
-		std::cout << "count = " << Student::GetStudentCount() << "\n";
-	}
-	std::cout << "count = " << Student::GetStudentCount() << "\n";
-	delete s5;
-	std::cout << "count = " << Student::GetStudentCount() << "\n";
-
+	Logger::GetInstance()->Log("hello");
+	Logger::GetInstance()->Log("world");
 	return 0;
 }

@@ -1,34 +1,35 @@
 #include <iostream>
 #include "Student.h"
+#include"Example.h"
 // Конструкторы
 
-class A
-{
-	const int a;
-
-public:
-	A(int a) :
-		a(a)
-	{
-	}
-};
-
-A ga(1);
-
-class B
-{
-	A& a;
-public:
-	B() :
-		a(ga)
-	{
-	}
-
-	B(A& a) :
-		a(a)
-	{
-	}
-};
+//class A
+//{
+//	const int a;
+//
+//public:
+//	A(int a) :
+//		a(a)
+//	{
+//	}
+//};
+//
+//A ga(1);
+//
+//class B
+//{
+//	A& a;
+//public:
+//	B() :
+//		a(ga)
+//	{
+//	}
+//
+//	B(A& a) :
+//		a(a)
+//	{
+//	}
+//};
 
 void PrintMaxRaiting(Student s1, Student s2)
 {
@@ -76,6 +77,18 @@ int main()
 	{
 		std::cout << "count = " << Student::GetStudentCount() << "\n";
 		s5 = new Student(g);
+		Student s4 = Create(g, "Sidorov");
+		s4.Print();
+		std::cout << "count = " << Student::GetStudentCount() << "\n";
+	}
+	std::cout << "count = " << Student::GetStudentCount() << "\n";
+	delete s5;
+	std::cout << "count = " << Student::GetStudentCount() << "\n";
+
+	A a(1);
+	
+	return 0;
+}
 		Student s4 = Create(g, "Sidorov");
 		s4.Print();
 		std::cout << "count = " << Student::GetStudentCount() << "\n";

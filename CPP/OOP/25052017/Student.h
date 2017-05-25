@@ -29,7 +29,7 @@ public:
 	void Read();
 	void Print() const;
 
-	Student& operator=(Student& student);
+	Student& operator=(Student& student); //конструктор копирования
 
 	static void IncreaseCounter();
 	static void DereaseCounter();

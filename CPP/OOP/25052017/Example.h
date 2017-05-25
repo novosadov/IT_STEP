@@ -11,14 +11,14 @@ public:
 	};
 };
 
-class Logger   //Создаёт логи (надо дописать код)
+class Logger  // пишет логи
 {
 private:
 	static Logger* g_instance;
-	Logger() = default;
+	Logger();
+
 public:
-	void Log(char const*);
-	
+	void Log(char const* msg); // выводит логи на консоль
 	Logger(Logger const&) = delete;
 	Logger& operator=(Logger&) = delete;
 

@@ -1,0 +1,13 @@
+#include<iostream>
+#include <string>
+
+int main()
+{
+	system("chcp 1251 > text");
+	std::cout << "Пожалуйста, введите свое имя и отчество\n";
+	std::string first;
+	std::string second;
+	std::cin >> first >> second; // Считываем две строки
+	std::cout << "Привет, " << first << " " << second << "\n";
+	return 0;
+}

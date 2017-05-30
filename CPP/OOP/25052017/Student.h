@@ -1,38 +1,35 @@
 #pragma once
 
-class Group
-{
-};
+#include "String.h"
 
 class Student
 {
 private:
-	char* m_name = 0;
+	String m_name;
 	int m_rating;
-	Group& m_group;
 
 	static int g_count;
 
 public:
-	Student(Group& group);
-	Student(Group& group, char const* name, int rating);
-	Student(Student const& student); //конструктор копирования
+	Student();
+	Student(String const& name, int rating);
+	// copy constructor
+	Student(Student const& student);
 
 	~Student();
 
-	char const* GetName() const;
+	String const& GetName() const;
 	int GetRating() const;
 
-	void SetName(char const* name);
+	void SetName(String const& name);
 	void SetRating(int rating);
 
 	void Read();
 	void Print() const;
 
-	Student& operator=(Student& student); //перегрузить оператор =
+	Student& operator=(Student& student);
 
 	static void IncreaseCounter();
-	static void DereaseCounter();
+	static void DecreaseCounter();
 	static int GetStudentCount();
-
 };

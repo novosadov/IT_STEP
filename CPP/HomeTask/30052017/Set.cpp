@@ -4,8 +4,8 @@
 
 Set::Set()
 {
-	m_elements = new int[5];
 	m_capacity = 5;
+	m_elements = new int[m_capacity];
 	m_count = 0;
 }
 
@@ -20,7 +20,7 @@ void Set::ExpandMemory()
 
 bool Set::Contains(int element) const
 {
-	for (int i = 0; i < m_count; i++)
+	for (size_t i = 0; i < m_count; ++i)
 	{
 		if (m_elements[i] == element)
 		{
@@ -50,5 +50,16 @@ void Set::Add(int element)
 
 void Set::Remove(int element)
 {
-
+	for (size_t i = 0; i < m_count; ++i)
+	{
+		if (m_elements[i] == element)
+		{
+			for (size_t j = i; j < m_count - 1; ++j)
+			{
+				m_elements[j] = m_elements[j + 1];
+			}
+			m_count--;
+			break;
+		}
+	}
 }

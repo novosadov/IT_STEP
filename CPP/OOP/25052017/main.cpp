@@ -41,11 +41,11 @@ void PrintMaxRaiting(Student s1, Student s2)
 		s2.GetRating() : s1.GetRating()) << "\n";
 }
 
-Student Create(Group& g, char const* name)
+/*Student Create(Group& g, char const* name)
 {
 	Student s(g, name, 0);
 	return s;
-}
+} */
 
 int main()
 {
@@ -113,12 +113,12 @@ int main()
 
 	char s2[10];
 	strcpy(s2, s1);
-	std::cout << s2 << "\n";
+	std::cout << s2;
 
 	String s3;
 	std::cin >> s3;
 	String s5 = s1 + s3;
-	std::cout << s5 <<"\n";
+	std::cout << s5;
 
 	return 0;
 }

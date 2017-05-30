@@ -22,7 +22,7 @@ public:
 	bool operator<(String const& rhs) const;
 	bool operator>(String const& rhs) const;
 
-	String& operator=(String& rhs);
+	String& operator=(String const& rhs);
 	char operator[](int idx) const;
 	char& operator[](int idx);
 

@@ -2,6 +2,7 @@
 #include "Student.h"
 #include"Example.h"
 #include"Distance.h"
+#include"String.h"
 
 
 // Конструкторы
@@ -92,12 +93,32 @@ int main()
 	//Logger::GetInstance()->Log("hello");
 	//Logger::GetInstance()->Log("world");
 
-	Distance d1(1, 2);
+	/*Distance d1(1, 2);
 	Distance d2(2, 3);
 	Distance d3 = d1 + d2;
 	d3++;
 	Distance d4 = ++d3;
 	d3.Print();
-	d4.Print();
+	d4.Print();*/
+/*
+	Distance d1, d2;
+	std::cout << "Enter first: ";
+	std::cin >> d1;
+	std::cout << "Enter second: ";
+	std::cin >> d2;
+	Distance summ = d1 + d2;	
+	std::cout << "Summ: " << summ << "\n";*/
+
+	String s1 = "Hello.";
+
+	char s2[10];
+	strcpy(s2, s1);
+	std::cout << s2 << "\n";
+
+	String s3;
+	std::cin >> s3;
+	String s5 = s1 + s3;
+	std::cout << s5 <<"\n";
+
 	return 0;
 }

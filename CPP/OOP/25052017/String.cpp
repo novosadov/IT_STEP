@@ -51,6 +51,7 @@ String String::operator+(String const& rhs)
 	strcat(newStr.m_str, rhs.m_str);*/
 	memcpy(newStr.m_str, m_str, length1);
 	memcpy(newStr.m_str + length1, rhs.m_str, length2 + 1); 
+
 	return newStr;
 }
 
@@ -92,7 +93,7 @@ std::istream& operator >> (std::istream& stream, String& string)
 	return stream;
 }
 
-String& String::operator=(String& rhs)
+String& String::operator=(String const& rhs)
 {
 	if (&rhs != this)
 	{

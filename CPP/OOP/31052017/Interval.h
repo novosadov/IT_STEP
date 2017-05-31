@@ -17,7 +17,7 @@ public:
 	Interval(Interval const& interval);
 	Interval& operator=(Interval const& rhs);
 
-	float SetBeginEnd(float begin, float end);
+	void SetBeginEnd(float begin, float end);
 	float GetBegin()const;
 	float GetEnd()const;
 
@@ -31,10 +31,7 @@ public:
 	Interval operator|(Interval const& rhs);
 	void operator+=(Interval const rhs);
 	void operator-=(Interval const rhs);
+	friend std::istream& operator >> (std::istream& stream, Interval& interval);
 };
 
 std::ostream& operator<<(std::ostream& stream, Interval const& interval);
-std::istream& operator>> (std::istream& stream, Interval& interval);
-
-
-

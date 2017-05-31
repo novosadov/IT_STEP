@@ -1,5 +1,6 @@
 #include "Interval.h"
 #include <iostream>
+#include <stdio.h>
 
 float max(float a, float b)
 {	
@@ -57,7 +58,7 @@ Interval& Interval::operator=(Interval const& interval)
 	return *this;
 }
 
-float Interval::SetBeginEnd(float begin, float end)
+void Interval::SetBeginEnd(float begin, float end)
 {
 	m_begin = begin;
 	m_end = end;
@@ -92,12 +93,12 @@ void Interval::Expand(float scale)
 
 float Interval::Mid() const
 {
-
+	return 0;
 }
 
 bool Interval::IsEmpty() const
 {
-
+	return 0;
 }
 
 
@@ -119,6 +120,7 @@ Interval Interval::operator|(Interval const& rhs)
 {
 	Interval result;
 
+	return result;
 }
 
 void Interval::operator+=(Interval const rhs)
@@ -133,11 +135,14 @@ void Interval::operator-=(Interval const rhs)
 
 std::ostream& operator<<(std::ostream& stream, Interval const& interval)
 {
-	stream << interval.GetBegin << " '" << interval.GetEnd<< "\n";
+	stream << interval.GetBegin() << " " << interval.GetEnd()<< "\n";
 	return stream;
 }
 
-std::istream& operator >> (std::istream& stream, Interval& interval)
+std::istream& operator>>(std::istream& stream, Interval& interval)
 {
-
+	char buffer[20];
+	stream.getline(buffer, 19);
+	sscanf(buffer, "%f %f", &interval.m_begin, &interval.m_end);
+	return stream;
 }

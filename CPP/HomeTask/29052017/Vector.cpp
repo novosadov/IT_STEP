@@ -1,5 +1,6 @@
 #include"Vector.h"
 #include<iostream>
+#include<math.h>
 
 Vector::Vector():
 	m_x(0),
@@ -25,6 +26,7 @@ void Vector::Read()
 	std::cin >> m_z;
 }
 
+
 void Vector::Print()const
 {
 	std::cout << "x = " << m_x << ";\n";
@@ -32,9 +34,53 @@ void Vector::Print()const
 	std::cout << "z = " << m_z << ";\n";
 }
 
+
 Vector Vector::operator+(Vector const& rhs)
 {
 	Vector result = *this;
 	result = result + rhs;
 	return result;
 }
+
+
+int Vector::Summ(int v1, int v2)
+{
+	int result = v1 + v2;
+	return result;
+}
+
+
+int Vector::LeghtVector(int x, int y, int z)
+{
+	int result = sqrt((x*x)+(y*y)+(z*z));
+	return result;
+}
+
+
+Vector Vector::operator*( Vector const& rhs)
+{
+	Vector result = *this;
+	result = result*rhs;
+	return result;
+}
+
+
+Vector& Vector::operator=(Vector const& vector)
+{
+	if (this == &vector)
+	{
+		return *this;
+	}
+	this->m_x = vector.m_x;
+	this->m_y = vector.m_y;
+	this->m_z = vector.m_z;
+	return *this;
+}
+
+
+Vector Vector::Scalyar(Vector v1,int x1, int y1, int z1, Vector v2, int x2, int y2, int z2)
+{
+	int result =(x1*x2) + (y1*y2) + (z1*z2);
+	return *this;
+}
+

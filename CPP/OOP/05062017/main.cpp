@@ -3,7 +3,8 @@
 
 int main()
 {
-	Time time(6,70,6);
+	Time time(12,70,6);
 	time.Print();
+	std::cout << (time.IsAm() ? "am" : "pm") << "\n";
 	return 0;
 }

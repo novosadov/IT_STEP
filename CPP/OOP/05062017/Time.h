@@ -28,4 +28,6 @@ public:
 	void Set(int hour, int minute, int second);
 
 	void Print()const;
+
+	bool IsAm()const;
 };

@@ -26,8 +26,16 @@ public:
 	void AddHour(int value);
 
 	void Set(int hour, int minute, int second);
-
 	void Print()const;
-
 	bool IsAm()const;
+
+	int GetSecondsFromMidnight()const;
+
+	bool operator==(Time const& time)const;
+	Time& operator++();
+	Time operator++(int);
+	bool operator<(Time const& time)const;
+	bool operator>=(Time const& time)const;
 };
+
+Time operator+(Time const& time1, Time const& time2);

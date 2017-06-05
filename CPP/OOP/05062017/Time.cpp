@@ -115,3 +115,8 @@ void Time::Print()const
 		<< std::setw(2) << std::setfill('0') << minute << ":" 
 		<< std::setw(2) << std::setfill('0') << second << "\n";
 }
+
+bool Time::IsAm()const
+{				
+	return (hour < 12);	
+}

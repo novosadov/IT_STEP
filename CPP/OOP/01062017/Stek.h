@@ -1,26 +1,28 @@
 #pragma once
-#include <iosfwd>
 
-class Stek
+class Stack
 {
 private:
 	int* m_elements;
 	size_t m_capacity;
 	size_t m_count;
 
-	void ExpandMemory();
+	void ReallocateMemory(int newCapacity);
 
 public:
-	Stek();
-	bool Contains(int element) const;
-	size_t GetCount() const;
+	Stack();
+	Stack(Stack const& stack);
+	Stack(Stack&& stack);
+	~Stack();
+
 	void Push(int element);
-	void Pop();
-	Stek(Stek const& stek);
-	~Stek();
-	Stek& operator=(Stek const& rhs);
-	int Top(int element);
+	int Pop();
+	size_t GetQuantity();
+	int Top();
 	void Clear();
-	Stek& operator<<(int element);
-	Stek& operator>>(int& element);
+
+	Stack& operator=(Stack const& stack);
+	Stack& operator=(Stack&& stack);
+	Stack& operator<<(int element);
+	Stack& operator >> (int& element);
 };

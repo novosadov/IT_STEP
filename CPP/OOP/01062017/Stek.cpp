@@ -1,129 +1,123 @@
-#include "Stek.h"
-#include<cstring>
-#include<iostream>
+#include "Stack.h"
 
+#include <iostream>
 
-Stek::Stek()
+void Stack::ReallocateMemory(int newCapacity)
 {
-	m_capacity = 10;
-	m_elements = new int[m_capacity];
-	m_count = 0;
-}
-
-
-void Stek::ExpandMemory()
-{
-	m_capacity *= 2;
-	int* newMemory = new int[m_capacity];
-	memcpy(newMemory, m_elements, sizeof(int)*m_count);
+	m_capacity = newCapacity;
+	int* newMwmory = new int[m_capacity];
+	memcpy(newMwmory, m_elements, m_capacity);
 	delete[] m_elements;
-	m_elements = newMemory;
+	m_elements = newMwmory;
 }
 
-
-bool Stek::Contains(int element) const
+Stack::Stack() :
+	m_capacity(10),
+	m_count(0)
 {
-	for (size_t i = 0; i < m_count; ++i)
-	{
-		if (m_elements[i] == element)
-		{
-			return true;
-		}
-	}
-	return false;
+	m_elements = new int[10];
 }
 
-size_t Stek::GetCount() const
+Stack::Stack(Stack const& stack)
+{	
+		m_capacity = stack.m_capacity;
+		m_count = stack.m_count;
+		m_elements = new int[m_capacity];
+		memcpy(m_elements, stack.m_elements, m_capacity);	
+}
+
+Stack::Stack(Stack&& stack)
+{
+	m_count = stack.m_count;	
+	m_capacity = stack.m_capacity;	
+	m_elements = stack.m_elements;
+
+	stack.m_elements = nullptr;
+	stack.m_count = 0;
+	stack.m_capacity = 0;
+}
+
+Stack::~Stack()
+{
+	delete[] m_elements;
+}
+
+void Stack::Push(int element)
+{
+	if (m_count == m_capacity)
+	{
+		ReallocateMemory(m_capacity * 2);
+	}
+	m_elements[m_count] = element;
+	m_count++;
+}
+
+int Stack::Pop()
+{
+	m_count--;
+	if (m_count * 4 <= m_capacity && m_count >= 10)
+	{
+		ReallocateMemory(m_capacity / 2);
+	}
+	return m_elements[m_count];
+}
+
+size_t Stack::GetQuantity()
 {
 	return m_count;
 }
 
-void Stek::Push(int element)
-{	
-		if (m_count == m_capacity)
-		{
-			ExpandMemory();
-		}
-		m_elements[m_count] = element;
-		m_count++;	
+int Stack::Top()
+{
+	return m_elements[m_count - 1];
 }
 
-
-void Stek::Pop()
+void  Stack::Clear()
 {
-	for (size_t i = 0; i < m_count; ++i)
+	m_count = 0;
+}
+
+Stack& Stack::operator=(Stack const& stack)
+{
+	if (this != &stack)
 	{
-		if (m_elements[i] == m_elements[i+1])
-		{
-			for (size_t j = i; j < m_count - 1; ++j)
-			{
-				m_elements[j] = m_elements[j + 1];
-			}
-			m_count--;
-			break;
-		}
+		m_capacity = stack.m_capacity;
+		m_count = stack.m_count;
+		delete[] m_elements;
+		m_elements = new int[m_capacity];
+		memcpy(m_elements, stack.m_elements, m_capacity);
 	}
-}
-
-
-Stek::Stek(Stek const& stek):
-	m_capacity(stek.m_capacity),
-	m_count(stek.m_count)
-{
-	int* m_elements = new int[m_capacity];
-	memcpy(m_elements, stek.m_elements, sizeof(int)*m_count);	
-}
-
-Stek::~Stek()
-{
-	delete[] m_elements;
-}
-
-Stek& Stek::operator=(Stek const& stek)
-{
-	if (this == &stek)
-	{
-		return *this;
-	}
-	this->m_elements = stek.m_elements;
-	this->m_count = stek.m_count;
 	return *this;
 }
 
-int Stek::Top(int element)
+Stack& Stack::operator=(Stack&& stack)
 {
-	return element;
-}
-
-void Stek::Clear()
-{
-	delete[] m_elements;
-}
-
-Stek& Stek::operator<<(int element)
-{
-	if (m_count == m_capacity)
+	if (this != &stack)
 	{
-		ExpandMemory();
+		delete[]m_elements;
+		m_count = stack.m_count;
+		m_capacity = stack.m_capacity;
+		m_elements = stack.m_elements;
+
+		stack.m_elements = nullptr;
+		stack.m_count = 0;
+		stack.m_capacity = 0;
+
 	}
-	m_elements[m_count] = element;
-	m_count++;
+}
+
+
+Stack& Stack::operator<<(int element)
+{
+	Push(element);
 	return *this;
 }
 
-Stek& Stek::operator >> (int& element)
+Stack& Stack::operator >> (int& element)
 {
-	for (size_t i = 0; i < m_count; ++i)
+	if (m_count != 0)
 	{
-		if (m_elements[i] == element)
-		{
-			for (size_t j = i; j < m_count - 1; ++j)
-			{
-				m_elements[j] = m_elements[j + 1];
-			}
-			m_count--;
-			break;
-		}
+		element = Pop();
 	}
 	return *this;
 }

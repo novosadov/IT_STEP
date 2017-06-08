@@ -144,12 +144,10 @@ T* Find(T* arr, int count, T const& elements)
 template<class T, int N>
 class Array
 {
-private:
-	
-
 public:
 	T m_array[N];
 	Array();
+
 
 	template<class T1, int N1>
 	Array(const Array<T1, N1>& rhs)
@@ -163,7 +161,6 @@ public:
 	T& operator[](int idx);
 };
 
-
 template<class T, int N>
 Array<T, N>::Array()
 {
@@ -173,9 +170,13 @@ Array<T, N>::Array()
 template<class T, int N>
 T& Array<T, N>::operator[](int idx)
 {
-
+	if (idx < 0 || idx >= N)
+	{
+		std::cout << "Invalid index\n";
+		exit(1);
+	}
+	return m_array[idx];
 }
-
 
 
 int main()

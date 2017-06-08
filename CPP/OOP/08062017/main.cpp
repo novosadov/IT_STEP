@@ -80,9 +80,15 @@ T const& max(T const& a, T const& b)
 }
 
 template<class T>
+T const& min(T const& a, T const& b)
+{
+	return a < b ? a : b;
+}
+
+template<class T>
 T const& max(T const& a, T const& b, T const& c)
 {
-	return max(max(a,b),c);
+	return max(max(a, b), c);
 }
 
 template<class T1, class T2>
@@ -107,39 +113,36 @@ void BubbleSort(T* arr, int count)
 			{
 				// swap(arr[j], arr[j + 1]);
 				T tmp = std::move(arr[j]);
-				arr[j] = std::move(arr[j+1]);
+				arr[j] = std::move(arr[j + 1]);
 				arr[j + 1] = std::move(tmp);
 			}
 		}
 	}
 }
 
-
 template<class T>
-T* Find(T* arr, int count, T const& elements)
+T* Find(T* array, int count, T const& element)
 {
 	for (int i = 0; i < count; i++)
 	{
-		if (arr[i] == elements)
+		if (array[i] == element)
 		{
-			return arr+i;
+			return array + i;
 		}
-
 	}
 	return nullptr;
 }
 
-
-//template<class T>
-//T Average(T* arr, int count)
-//{
-//	T summ = 0;
-//	for (int i = 0; i < count; i++)
-//	{
-//		summ += arr[i];
-//	}
-//	return summ / count;
-//}
+template<class T>
+T Average(T* array, int count)
+{
+	T alisa = 0;
+	for (int i = 0; i < count; i++)
+	{
+		alisa += array[i];
+	}
+	return alisa / count;
+}
 
 template<class T, int N>
 class Array
@@ -152,13 +155,15 @@ public:
 	template<class T1, int N1>
 	Array(const Array<T1, N1>& rhs)
 	{
-		for (int i = 0; i < max(N, N1); ++i)
+		for (int i = 0; i < min(N, N1); ++i)
 		{
 			m_array[i] = (T)rhs.m_array[i];
 		}
 	}
 
 	T& operator[](int idx);
+
+	int GetSize() const;
 };
 
 template<class T, int N>
@@ -178,6 +183,11 @@ T& Array<T, N>::operator[](int idx)
 	return m_array[idx];
 }
 
+template<class T, int N>
+int Array<T, N>::GetSize() const
+{
+	return N;
+}
 
 int main()
 {
@@ -206,18 +216,29 @@ int main()
 
 	Student arr4[] = { Student("Petrov", 5), Student("Ivanov", 7) };
 	BubbleSort(arr4, 2);
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 2; ++i)
 	{
 		arr4[i].Print();
 	}
 
-	/*std::cout << Average(arr3, 5) << "\n";*/
 
-	Array<double, 10> arr8;
+
+	std::cout << Average(arr1, 5) << "\n";
+
+	// Array<double, 10> arr8;
 	Array<int, 11> arr9;
-	
+
+	for (int i = 0; i < arr9.GetSize(); i++)
+	{
+		arr9[i] = i + 1;
+	}
+	Array<double, 10> arr8 = arr9;
+	for (int i = 0; i < arr8.GetSize(); i++)
+	{
+		std::cout << arr8[i] << "  ";
+	}
+
 
 	return 0;
-
-
 }
+

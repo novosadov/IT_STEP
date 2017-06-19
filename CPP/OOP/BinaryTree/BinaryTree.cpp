@@ -14,5 +14,11 @@ int main()
 
 	Tree.Print();
 
+	TreeNode* node = Tree.Find(3);
+	if (node != nullptr)
+	{
+		std::cout << "Found \n";
+	}
+
 	return 0;
 }

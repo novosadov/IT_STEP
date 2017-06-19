@@ -81,4 +81,39 @@ public:
 		std::cout << node->Data << " ";
 		PrintRecursive(node->Right);
 	}
+
+	TreeNode* FindRecursive(TreeNode* node, int value)
+	{
+		if (node != nullptr)
+		{
+
+			if (node->Data == value)
+			{
+				return node;
+			}
+			if (node->Data > value)
+			{
+				return FindRecursive(node->Left, value);
+			}
+			else
+			{
+				return FindRecursive(node->Right, value);
+			}
+		}
+		return nullptr;
+	}
+
+
+	TreeNode* Find(int value)
+	{
+		return FindRecursive(m_root, value);
+
+	}
+
+
+	void Erase(TreeNode* node)
+	{
+
+	}
+
 };

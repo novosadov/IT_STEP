@@ -126,6 +126,10 @@ public:
 
 	void Erase(TreeNode* node)
 	{
+		if (node == nullptr)
+        	 {
+          		  return;
+       		 }
 		TreeNode* forReplace = nullptr;
 		TreeNode* newParent = node->Parent;
 		if (node->Left != nullptr && node->Right != nullptr)

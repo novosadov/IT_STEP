@@ -11,27 +11,67 @@ struct TreeNode
 		Data(value)
 	{
 	}
-};#pragma once
-#include<iostream>
-
-struct TreeNode
-{
-	int Data;
-	TreeNode* Left = nullptr;
-	TreeNode* Right = nullptr;
-	TreeNode* Parent = nullptr;
-	TreeNode(int value) :
-		Data(value)
-	{
-	}
 };
 
 class BinaryTree
 {
 	TreeNode* m_root = nullptr;
 
+private:
+
+	void InsertRecursive(TreeNode* node, int value)
+	{
+		if (value == node->Data)
+		{
+			return;
+		}
+		if (value < node->Data)
+		{
+			if (node->Left == nullptr)
+			{
+				TreeNode* newNode = new TreeNode(value);
+				node->Left = newNode;
+				newNode->Parent = node;
+			}
+			else
+			{
+				InsertRecursive(node->Left, value);
+			}
+
+		}
+		else
+		{
+			if (node->Right == nullptr)
+			{
+				TreeNode* newNode = new TreeNode(value);
+				node->Right = newNode;
+				newNode->Parent = node;
+			}
+			else
+			{
+				InsertRecursive(node->Right, value);
+			}
+		}
+	}
+	void PrintRecursive(TreeNode* node)
+	{
+		if (node == nullptr)
+		{
+			return;
+		}
+
+		PrintRecursive(node->Left);
+		std::cout << node->Data << " ";
+		PrintRecursive(node->Right);
+	}
+
 public:
 	BinaryTree() = default;
+
+	~BinaryTree()
+	{
+		Clear();
+	}
 
 	void Insert(int value)
 	{
@@ -44,56 +84,12 @@ public:
 			InsertRecursive(m_root, value);
 		}
 	}
-	void InsertRecursive(TreeNode* node, int value)
-	{
-		if (value == node->Data)
-		{
-			return;
-		}
-		if (value < node->Data)
-		{
-			if (node->Left == nullptr)
-			{
-				TreeNode* NewNode = new TreeNode(value);
-				node->Left = NewNode;
-				NewNode->Parent = node;
-			}
-			else
-			{
-				InsertRecursive(node->Left, value);
-			}
 
-		}
-		else
-		{
-			if (node->Right == nullptr)
-			{
-				TreeNode* NewNode = new TreeNode(value);
-				node->Right = NewNode;
-				NewNode->Parent = node;
-			}
-			else
-			{
-				InsertRecursive(node->Right, value);
-			}
-		}
-	}
 	void Print()
 	{
 		PrintRecursive(m_root);
 	}
 
-	void PrintRecursive(TreeNode* node)
-	{
-		if (node == nullptr)
-		{
-			return;
-		}
-
-		PrintRecursive(node->Left);
-		std::cout << node->Data << " ";
-		PrintRecursive(node->Right);
-	}
 	TreeNode* FindRecursive(TreeNode* node, int value)
 	{
 		if (node != nullptr)
@@ -127,11 +123,12 @@ public:
 	void Erase(TreeNode* node)
 	{
 		if (node == nullptr)
-        	 {
-          		  return;
-       		 }
+		{
+			return;
+		}
 		TreeNode* forReplace = nullptr;
-		TreeNode* newParent = node->Parent;
+		// TreeNode* newParent = node->Parent;
+		bool nodeHasTwoChildren = false;
 		if (node->Left != nullptr && node->Right != nullptr)
 		{
 			forReplace = node->Right;
@@ -139,11 +136,13 @@ public:
 			{
 				forReplace = forReplace->Left;
 			}
-			forReplace->Data = std::move(node->Data);
+			node->Data = std::move(forReplace->Data);
 			node = forReplace;
 			forReplace = nullptr;
+			nodeHasTwoChildren = true;
 		}
 
+		TreeNode* newParent = node->Parent;
 		if (node->Left != nullptr)
 		{
 			forReplace = node->Left;
@@ -167,112 +166,42 @@ public:
 				newParent->Right = forReplace;
 			}
 		}
+		if (!nodeHasTwoChildren && node == m_root)
+		{
+			m_root = forReplace;
+		}
 		delete node;
 	}
 
-};
-
-class BinaryTree
-{
-	TreeNode* m_root = nullptr;
-
-public:
-	BinaryTree() = default;
-
-	void Insert(int value)
+	void Clear()
 	{
-		if (m_root == nullptr)
-		{
-			m_root = new TreeNode(value);
-		}
-		else
-		{
-			InsertRecursive(m_root, value);
-		}
-	}
-	void InsertRecursive(TreeNode* node, int value)
-	{
-		if (value == node->Data)
-		{
-			return;
-		}
-		if (value < node->Data)
-		{
-			if (node->Left == nullptr)
-			{
-				TreeNode* NewNode = new TreeNode(value);
-				node->Left = NewNode;
-				NewNode->Parent = node;
-			}
-			else
-			{
-				InsertRecursive(node->Left, value);
-			}
-
-		}
-		else
-		{
-			if (node->Right == nullptr)
-			{
-				TreeNode* NewNode = new TreeNode(value);
-				node->Right = NewNode;
-				NewNode->Parent = node;
-			}
-			else
-			{
-				InsertRecursive(node->Right, value);
-			}
-		}
-	}
-	void Print()
-	{
-		PrintRecursive(m_root);
+		ClearRecursive(m_root);
+		m_root = nullptr;
 	}
 
-	void PrintRecursive(TreeNode* node)
+	void ClearRecursive(TreeNode* node)
 	{
 		if (node == nullptr)
 		{
 			return;
 		}
-
-		PrintRecursive(node->Left);
-		std::cout << node->Data << " ";
-		PrintRecursive(node->Right);
+		ClearRecursive(node->Left);
+		ClearRecursive(node->Right);
+		delete node;
 	}
 
-	TreeNode* FindRecursive(TreeNode* node, int value)
+	int GetCount()
 	{
-		if (node != nullptr)
+		return GetCountRecursive(m_root);
+	}
+
+	int GetCountRecursive(TreeNode* node)
+	{
+		if (node == nullptr)
 		{
-
-			if (node->Data == value)
-			{
-				return node;
-			}
-			if (node->Data > value)
-			{
-				return FindRecursive(node->Left, value);
-			}
-			else
-			{
-				return FindRecursive(node->Right, value);
-			}
+			return 0;
 		}
-		return nullptr;
+
+		return GetCountRecursive(node->Left) + GetCountRecursive(node->Right) + 1;
 	}
-
-
-	TreeNode* Find(int value)
-	{
-		return FindRecursive(m_root, value);
-
-	}
-
-
-	void Erase(TreeNode* node)
-	{
-
-	}
-
 };

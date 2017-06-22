@@ -2,7 +2,8 @@
 
 
 
-Employee::Employee()
+Employee::Employee():
+Person("")
 {
 }
 

@@ -7,7 +7,7 @@ class Person
 protected:
 	String m_name;
 public:
-	Person();
+	//Person();
 	~Person();
 
 	String const& GetName() const;

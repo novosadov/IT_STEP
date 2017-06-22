@@ -5,12 +5,14 @@
 
 
 Student::Student() :
+	Person(""),
 	m_rating(0)
 {
 	std::cout << "Student default constructor\n";
 }
 
 Student::Student(String const& name, int rating) :
+	Person(name),
 	m_rating(rating)
 {
 	m_name = name;
@@ -18,15 +20,15 @@ Student::Student(String const& name, int rating) :
 }
 
 Student::Student(Student const& student) :
+	Person(student.m_name),
 	m_rating(student.m_rating)
 {
-	m_name = student.m_name;
 }
 
 Student::Student(Student&& student) :
+	Person(std::move(student.m_name)),
 	m_rating(student.m_rating)
 {
-	m_name = std::move(student.m_name);
 }
 
 Student::~Student()

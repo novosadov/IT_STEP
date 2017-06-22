@@ -1,10 +1,10 @@
 #include "Person.h"
 #include<iostream>
 
-Person::Person()
-{
-	std::cout << "Person constructor\n";
-}
+//Person::Person()
+//{
+//	std::cout << "Person constructor\n";
+//}
 
 
 Person::~Person()

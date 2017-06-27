@@ -1,14 +1,15 @@
 #pragma once
-#pragma once
-#include<string>
+#include <string>
+
 
 class IOrder
 {
-public:	
+public:
 	virtual ~IOrder() = default;
 
 	virtual std::string GetName() = 0;
 	virtual double GetCost() = 0;
+
 private:
 
 };
@@ -24,10 +25,8 @@ public:
 	double GetCost()
 	{
 		return 0.5;
-	}	
+	}
 };
-
-
 
 class CheeseAndTomatoPancake : public IOrder
 {
@@ -36,40 +35,40 @@ public:
 	{
 		return "Pancake with cheese and tomato";
 	}
+
 	double GetCost()
 	{
 		return 1.5;
 	}
 };
 
-
 class BananaPancake : public IOrder
 {
 public:
 	std::string GetName()
 	{
-		return "Pancake banana";
+		return "Pancake with banana";
 	}
+
 	double GetCost()
 	{
 		return 1.0;
 	}
 };
 
-
 class StrawberryPancake : public IOrder
 {
 public:
 	std::string GetName()
 	{
-		return "Pancake with Strawberry";
+		return "Pancake with strawberry";
 	}
+
 	double GetCost()
 	{
 		return 1.2;
 	}
 };
-
 
 class Suppliments : public IOrder
 {
@@ -77,11 +76,13 @@ private:
 	IOrder* m_decorate;
 	double m_cost;
 	std::string m_name;
+	size_t m_count = 0;
 public:
-	Suppliments(IOrder* decorate, double cost, std::string name) :
+	Suppliments(IOrder* decorate, double cost, std::string name, size_t count) :
 		m_decorate(decorate),
 		m_cost(cost),
-		m_name(name)
+		m_name(name),
+		m_count(count)
 	{
 	}
 
@@ -92,46 +93,50 @@ public:
 
 	double GetCost()
 	{
-		return m_decorate->GetCost() + m_cost;
+		return m_decorate->GetCost() + m_cost * m_count;
 	}
 
 	std::string GetName()
 	{
-		return m_decorate->GetName() + ", " + m_name;
+		std::string str = m_decorate->GetName() + ", " + m_name;
+		if (m_count > 1)
+		{
+			str += "*" + std::to_string(m_count);
+		}
+		return str;
 	}
 };
 
 class BaconSup : public Suppliments
 {
 public:
-	BaconSup(IOrder* decorate):Suppliments(decorate, 0.5, "bacon")
-	{		
+	BaconSup(IOrder* decorate, size_t count) : Suppliments(decorate, 0.5, "bacon", count)
+	{
 	}
 };
-
 
 class OnionSup : public Suppliments
 {
 public:
-	OnionSup(IOrder* decorate) :Suppliments(decorate, 0.2, "onion")
+	OnionSup(IOrder* decorate, size_t count) : Suppliments(decorate, 0.2, "onion", count)
 	{
 	}
+
 };
 
 class ChocolateSup : public Suppliments
 {
 public:
-	ChocolateSup(IOrder* decorate) :Suppliments(decorate, 0.8, "Chocolate")
+	ChocolateSup(IOrder* decorate, size_t count) : Suppliments(decorate, 0.8, "chocolate", count)
 	{
 	}
+
 };
-
-
 
 class JamSup : public Suppliments
 {
 public:
-	JamSup(IOrder* decorate) :Suppliments(decorate, 0.5, "Jam")
+	JamSup(IOrder* decorate, size_t count) : Suppliments(decorate, 0.5, "jam", count)
 	{
 	}
 };

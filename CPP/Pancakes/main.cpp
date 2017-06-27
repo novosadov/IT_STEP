@@ -10,18 +10,18 @@ enum SupplimentType
 	Jam
 };
 
-IOrder* AddSuppliment(IOrder* order, SupplimentType type)
+IOrder* AddSuppliment(IOrder* order, SupplimentType type, size_t count)
 {
 	switch (type)
 	{
 	case Bacon:		
-		return new BaconSup(order);		
+		return new BaconSup(order, count);		
 	case Onion:
-		return new OnionSup(order);
+		return new OnionSup(order, count);
 	case Chocolate:
-		return new ChocolateSup(order);
+		return new ChocolateSup(order, count);
 	case Jam:
-		return new JamSup(order);
+		return new JamSup(order, count);
 	default:
 		return order;
 	}
@@ -37,8 +37,8 @@ void PrintCheck(IOrder* order)
 int main()
 {
 	IOrder* order = new CheeseAndTomatoPancake();
-	order = AddSuppliment(order, Bacon);
-	order = AddSuppliment(order, Onion);
+	order = AddSuppliment(order, Bacon, 2);	
+	order = AddSuppliment(order, Onion, 1);
 
 	PrintCheck(order);
 	delete order;

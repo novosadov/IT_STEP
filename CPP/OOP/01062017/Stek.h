@@ -1,5 +1,21 @@
 #pragma once
 
+
+class StackException
+{
+	size_t m_count;
+public:
+	StackException(size_t count) :
+		m_count(count)
+	{
+	}
+
+	size_t GetCount()
+	{
+		return m_count;
+	}
+};
+
 class Stack
 {
 private:

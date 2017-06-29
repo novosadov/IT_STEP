@@ -1,6 +1,16 @@
-#include "Stack.h"
+#include"Stek.h"
 
 #include <iostream>
+
+void Stack::CheckIsEmpty()
+{
+	if (m_count <= 0)
+	{
+		//throw m_count;
+		//throw "Stack is empty";
+		throw StackException(m_count);
+	}
+}
 
 void Stack::ReallocateMemory(int newCapacity)
 {
@@ -19,22 +29,14 @@ Stack::Stack() :
 }
 
 Stack::Stack(Stack const& stack)
-{	
+{
+	if (this != &stack)
+	{
 		m_capacity = stack.m_capacity;
 		m_count = stack.m_count;
 		m_elements = new int[m_capacity];
-		memcpy(m_elements, stack.m_elements, m_capacity);	
-}
-
-Stack::Stack(Stack&& stack)
-{
-	m_count = stack.m_count;	
-	m_capacity = stack.m_capacity;	
-	m_elements = stack.m_elements;
-
-	stack.m_elements = nullptr;
-	stack.m_count = 0;
-	stack.m_capacity = 0;
+		memcpy(m_elements, stack.m_elements, m_capacity);
+	}
 }
 
 Stack::~Stack()
@@ -54,6 +56,8 @@ void Stack::Push(int element)
 
 int Stack::Pop()
 {
+	CheckIsEmpty();
+	std::cout << "Pop is called\n";
 	m_count--;
 	if (m_count * 4 <= m_capacity && m_count >= 10)
 	{
@@ -69,6 +73,7 @@ size_t Stack::GetQuantity()
 
 int Stack::Top()
 {
+	CheckIsEmpty();
 	return m_elements[m_count - 1];
 }
 
@@ -90,23 +95,6 @@ Stack& Stack::operator=(Stack const& stack)
 	return *this;
 }
 
-Stack& Stack::operator=(Stack&& stack)
-{
-	if (this != &stack)
-	{
-		delete[]m_elements;
-		m_count = stack.m_count;
-		m_capacity = stack.m_capacity;
-		m_elements = stack.m_elements;
-
-		stack.m_elements = nullptr;
-		stack.m_count = 0;
-		stack.m_capacity = 0;
-
-	}
-}
-
-
 Stack& Stack::operator<<(int element)
 {
 	Push(element);
@@ -115,9 +103,6 @@ Stack& Stack::operator<<(int element)
 
 Stack& Stack::operator >> (int& element)
 {
-	if (m_count != 0)
-	{
-		element = Pop();
-	}
+	element = Pop();
 	return *this;
 }

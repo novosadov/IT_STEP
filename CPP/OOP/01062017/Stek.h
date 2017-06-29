@@ -8,11 +8,11 @@ private:
 	size_t m_count;
 
 	void ReallocateMemory(int newCapacity);
+	void CheckIsEmpty();
 
 public:
 	Stack();
 	Stack(Stack const& stack);
-	Stack(Stack&& stack);
 	~Stack();
 
 	void Push(int element);
@@ -22,7 +22,6 @@ public:
 	void Clear();
 
 	Stack& operator=(Stack const& stack);
-	Stack& operator=(Stack&& stack);
 	Stack& operator<<(int element);
 	Stack& operator >> (int& element);
 };

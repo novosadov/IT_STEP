@@ -27,7 +27,7 @@ void Person::Print() const
 
 void Person::SaveToStream(std::ostream& stream) const
 {
-	stream << "type:" << GetType() << "name:" << GetName();
+	stream << "type:" << GetType() << " name:" << GetName();
 }
 
 
@@ -127,5 +127,6 @@ void PersonList::LoadFromStream(std::istream& stream)
 		{
 			throw "Unknown person type";
 		}
+		m_data.push_back(person);
 	}
 }

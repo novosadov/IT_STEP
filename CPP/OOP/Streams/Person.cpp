@@ -64,3 +64,21 @@ PersonList::~PersonList()
 		delete person;
 	}
 }
+
+
+void PersonList::SaveToStream(std::ostream& stream)
+{
+	bool first = true;
+	for (Person* person : m_data)
+	{
+		if (first)
+		{
+			first = false;
+		}
+		else
+		{
+			stream << std::endl;
+		}
+		stream << *person;
+	}
+}

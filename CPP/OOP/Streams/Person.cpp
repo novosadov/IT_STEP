@@ -90,5 +90,11 @@ void PersonList::LoadFromStream(std::istream& stream)
 	while (!stream.eof())
 	{
 		stream.getline(buffer, 1024);
+		char* str = strtok(buffer, " ");
+		while (str != NULL)
+		{
+			std::cout << str << "\n";
+			str = strtok(NULL, " ");
+		}
 	}
 }

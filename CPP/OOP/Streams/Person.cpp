@@ -82,3 +82,13 @@ void PersonList::SaveToStream(std::ostream& stream)
 		stream << *person;
 	}
 }
+
+
+void PersonList::LoadFromStream(std::istream& stream)
+{
+	char buffer[1024];
+	while (!stream.eof())
+	{
+		stream.getline(buffer, 1024);
+	}
+}

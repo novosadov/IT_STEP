@@ -38,4 +38,5 @@ public:
 	void Add(Person* person);
 	void Print() const;
 	void SaveToStream(std::ostream& stream);
+	void LoadFromStream(std::istream& stream);
 };

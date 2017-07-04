@@ -7,6 +7,10 @@ class Student : public Person
 private:
 	int m_rating;
 
+protected:
+	void SaveToStream(std::ostream& stream) const override;
+	std::string GetType() const override;
+
 public:
 	Student();
 	Student(std::string const& name, int rating);

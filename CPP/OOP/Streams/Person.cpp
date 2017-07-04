@@ -89,14 +89,43 @@ void PersonList::LoadFromStream(std::istream& stream)
 	char buffer[1024];
 	while (!stream.eof())
 	{
+		std::map<std::string, std::string> params;
 		stream.getline(buffer, 1024);
 		char* str = strtok(buffer, " ");
 		while (str != NULL)
 		{
-			//std::cout << str << "\n";
-			std::string  part(str);
+			std::string part(str);
 			std::string::size_type pos = part.find(':');
+			std::string paramName = part.substr(0, pos);
+			std::string paramValue = part.substr(pos + 1, part.length() - pos - 1);
+			params[paramName] = paramValue;
 			str = strtok(NULL, " ");
+		}
+		if (params.find("type") == params.end())
+		{
+			throw "Param type not found";
+		}
+
+		Person* person = nullptr;
+		std::string type = params["type"];
+		std::string name = params["name"];
+		if (type == "person")
+		{
+			person = new Person(name);
+		}
+		else if (type == "student")
+		{
+			std::string rating = params["rating"];
+			person = new Student(name, atoi(rating.c_str()));
+		}
+		else if (type == "employee")
+		{
+			std::string salary = params["salary"];
+			person = new Employee(name, atoi(salary.c_str()));
+		}
+		else
+		{
+			throw "Unknown person type";
 		}
 	}
 }

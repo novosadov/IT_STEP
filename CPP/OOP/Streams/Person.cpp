@@ -7,7 +7,7 @@
 #include <cstring>
 
 Person::Person(std::string const& name) :
-m_name(name)
+	m_name(name)
 {
 }
 void Person::SetName(std::string const& name)
@@ -23,6 +23,24 @@ std::string const& Person::GetName() const
 void Person::Print() const
 {
 	std::cout << "Name: " << m_name << std::endl;
+}
+
+void Person::SaveToStream(std::ostream& stream) const
+{
+	stream << "type:" << GetType() << "name:" << GetName();
+}
+
+
+std::string Person::GetType()const
+{
+	return "person";
+}
+
+
+std::ostream& operator<<(std::ostream& stream, Person const& person)
+{
+	person.SaveToStream(stream);
+	return stream;
 }
 
 // PersonList

@@ -10,6 +10,10 @@ class Person
 protected:
 	std::string m_name;
 
+	virtual void SaveToStream(std::ostream& stream)const;
+	virtual std::string GetType()const;
+
+
 public:
 	Person() = default;
 	Person(std::string const& name);
@@ -19,7 +23,11 @@ public:
 	std::string const& GetName() const;
 
 	virtual void Print() const;
+
+	friend std::ostream& operator<<(std::ostream& stream, Person const& person);
 };
+
+std::ostream& operator<<(std::ostream& stream, Person const& person);
 
 class PersonList
 {

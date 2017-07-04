@@ -6,7 +6,11 @@
 
 class Employee : public Person
 {
-	int m_salary;
+int m_salary;
+
+protected:
+	void SaveToStream(std::ostream& stream) const override;
+	std::string GetType() const override;
 
 public:
 	Employee(std::string const& name, int salary);

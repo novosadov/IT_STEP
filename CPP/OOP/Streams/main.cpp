@@ -5,6 +5,20 @@
 #include <fstream>
 #include <iostream>
 
+
+
+void savePersons()
+{
+	std::ofstream ofile("D:\\persons.txt", std::ios::out | std::ios::trunc);
+	PersonList list;
+	list.Add(new Student("Ivanov", 8));
+	list.Add(new Employee("Johan", 10000));
+	list.Add(new Person("Petrov"));
+	list.SaveToStream(ofile);
+	list.SaveToStream(std::cout);
+}
+
+
 int main()
 {
 	/*std::ofstream file("D:\\example.txt", std::ios::out | std::ios::trunc);
@@ -48,14 +62,12 @@ int main()
 	std::cout << buffer << std::endl;
 	} */
 
-	std::ofstream ofile("D:\\persons.txt", std::ios::out | std::ios::trunc);
+	//savePersons();
+	std::ifstream ifile("D:\\persons.txt", std::ios::in);
 	PersonList list;
-	list.Add(new Student("Ivanov", 8));
-	list.Add(new Employee("Johan", 10000));
-	list.Add(new Person("Petrov"));
-	list.SaveToStream(ofile);
-	list.SaveToStream(std::cout); 
+	list.LoadFromStream(ifile);
 
 
 	return 0;
 }
+

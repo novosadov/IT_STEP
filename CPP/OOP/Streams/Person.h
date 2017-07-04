@@ -37,4 +37,5 @@ public:
 	~PersonList();
 	void Add(Person* person);
 	void Print() const;
+	void SaveToStream(std::ostream& stream);
 };

@@ -16,6 +16,19 @@ void Employee::SetSalary(int salary)
 	m_salary = salary;
 }
 
+
+std::string Employee::GetType() const
+{
+	return "employee";
+}
+
+void Employee::SaveToStream(std::ostream& stream) const
+{
+	Person::SaveToStream(stream);
+	stream << " salary:" << GetSalary();
+}
+
+
 void Employee::Print() const
 {
 	Person::Print();

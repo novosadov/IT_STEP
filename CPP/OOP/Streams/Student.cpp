@@ -5,31 +5,42 @@
 
 
 Student::Student() :
-Person(),
-m_rating(0)
+	Person(),
+	m_rating(0)
 {
 }
 
 Student::Student(std::string const& name, int rating) :
-Person(name),
-m_rating(rating)
+	Person(name),
+	m_rating(rating)
 {
 }
 
 Student::Student(Student const& student) :
-Person(student),
-m_rating(student.m_rating)
+	Person(student),
+	m_rating(student.m_rating)
 {
 }
 
 Student::Student(Student&& student) :
-m_rating(student.m_rating)
+	m_rating(student.m_rating)
 {
 	m_name = std::move(student.m_name);
 }
 
 Student::~Student()
 {
+}
+
+std::string Student::GetType() const
+{
+	return "student";
+}
+
+void Student::SaveToStream(std::ostream& stream) const
+{
+	Person::SaveToStream(stream);
+	stream << " rating:" << GetRating();
 }
 
 int Student::GetRating() const

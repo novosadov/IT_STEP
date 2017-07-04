@@ -54,6 +54,8 @@ int main()
 	list.Add(new Employee("Johan", 10000));
 	list.Add(new Person("Petrov"));
 	list.SaveToStream(ofile);
+	list.SaveToStream(std::cout); 
+
 
 	return 0;
 }

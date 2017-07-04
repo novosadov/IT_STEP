@@ -93,7 +93,9 @@ void PersonList::LoadFromStream(std::istream& stream)
 		char* str = strtok(buffer, " ");
 		while (str != NULL)
 		{
-			std::cout << str << "\n";
+			//std::cout << str << "\n";
+			std::string  part(str);
+			std::string::size_type pos = part.find(':');
 			str = strtok(NULL, " ");
 		}
 	}

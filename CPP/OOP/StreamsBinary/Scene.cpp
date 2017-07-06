@@ -54,8 +54,18 @@ void Scene::LoadFromStream(std::istream& stream)
 
 	while (true)
 	{
-		int idpos = stream.tellg();
+		if (stream.eof())
+		{
+			throw ShapeStreamReadException("Scene");
+		}
+		int idPos = stream.tellg();
 		stream.read(reinterpret_cast<char*>(&id), sizeof(id));
+
+		if (id == StreamIdSceneEnd)
+		{
+			break;
+		}
+
 		IShape* shape = nullptr;
 
 		switch (id)
@@ -80,7 +90,7 @@ void Scene::LoadFromStream(std::istream& stream)
 
 		if (shape != nullptr)
 		{
-			stream.seekg(idpos);
+			stream.seekg(idPos);
 			shape->LoadFromStream(stream);
 		}
 	}

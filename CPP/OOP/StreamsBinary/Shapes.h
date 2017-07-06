@@ -12,6 +12,8 @@ public:
 	Circle(int cx, int cy, int radius);
 	void Draw(IGraphics* g) override;
 	void Move(int x, int y) override;
+	void SaveToStream(std::ostream& stream) override;
+	void LoadFromStream(std::istream& stream) override;
 
 	void Init(int cx, int cy, int radius);
 };

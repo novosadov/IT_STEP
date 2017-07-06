@@ -14,4 +14,6 @@ public:
 	void Add(IShape* shape);
 	void Clear();
 	void Print(IGraphics* graphics);
+	void SaveToStream(std::ostream& stream);
+	void LoadFromStream(std::istream& stream);
 };

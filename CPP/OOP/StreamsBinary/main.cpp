@@ -32,35 +32,43 @@ void testManipulators()
 	std::cout << e << std::endl;
 }
 
+struct Complex
+{
+	float Im;
+	float Re;
+};
+
 int main()
 {
 	// testManipulators();
 
-	double arr[10];
+	Complex arr[10];
 	for (int i = 0; i < 10; ++i)
 	{
-		arr[i] = i;
+		arr[i].Im = i;
+		arr[i].Re = i+0.5;
 	}
 	std::ofstream ofile("D:\\array.bin", std::ios::out | std::ios::trunc | std::ios::binary);
 	ofile.write(reinterpret_cast<char*>(&arr), sizeof(arr));
 	ofile.close();
 
 	std::ifstream ifile("D:\\array.bin", std::ios::in | std::ios::binary);
-	std::vector<double> v;
+	std::vector<Complex> v;
 
 	while (!ifile.eof())
 	{
-		double buffer;
-		ifile.read(reinterpret_cast<char*>(&buffer), sizeof(buffer));
+		Complex buffer;
+		ifile.read(reinterpret_cast<char*>(&buffer),
+			sizeof(buffer));
 		if (ifile.gcount() == sizeof(buffer))
 		{
 			v.push_back(buffer);
 		}
 	}
 
-	for (double el : v)
+	for (Complex el : v)
 	{
-		std::cout << el << " ";
+		std::cout << el.Im << " " << el.Re << std::endl;
 	}
 
 	return 0;

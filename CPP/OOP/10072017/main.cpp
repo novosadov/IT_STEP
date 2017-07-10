@@ -1,6 +1,7 @@
 // ConsoleApplication2.cpp : Defines the entry point for the console application.
 //
 
+#include "Student.h"
 #include <sstream>
 #include <string>
 #include <iostream>
@@ -253,6 +254,43 @@ int main()
 	max = 10;	
 	std::copy_if(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "), lambda);
 	std::cout << std::endl;
+
+	std::vector<Student> students = {Student("Ivanov", 5), Student("Azarenko", 8), Student("Kozlov", 8) ,
+		Student("Eroshenko", 3), Student("Belkin", 4), Student("Shukerman", 6)};
+
+	std::sort(students.begin(), students.end());
+	for (auto it = students.begin(); it != students.end(); ++it)
+	{
+		it->Print();
+	}
+
+	
+
+	std::function<bool(Student const&, Student const&)> compareByRating =
+		[](Student const& st1, Student const& st2)
+	{
+		return st1.GetRating() < st2.GetRating();
+	};
+
+
+	std::cout << "=====================================" << "\n";
+
+
+	std::sort(students.begin(), students.end(), compareByRating);
+
+	for (auto it = students.begin(); it != students.end(); ++it)
+	{
+		it->Print();
+	}
+
+	std::cout << "=====================================" << "\n";
+
+	std::sort(students.begin(), students.end(),	std::greater<Student>());
+
+	for (auto it = students.begin(); it != students.end(); ++it)
+	{
+		it->Print();
+	}
 
 	return 0;
 }

@@ -368,5 +368,12 @@ int main()
 	std::cout << std::endl;
 	std::cout << "=====================================" << "\n";
 
+	std::istringstream is("10 23 5 7 8 4");
+	std::vector<int> v3;
+	v3.resize(10);
+	std::copy(std::istream_iterator<int>(is),
+		std::istream_iterator<int>(),
+		v3.begin());
+
 	return 0;
 }

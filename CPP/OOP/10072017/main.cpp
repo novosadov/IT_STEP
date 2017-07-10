@@ -370,10 +370,10 @@ int main()
 
 	std::istringstream is("10 23 5 7 8 4");
 	std::vector<int> v3;
-	v3.resize(10);
+	//v3.resize(10);
 	std::copy(std::istream_iterator<int>(is),
 		std::istream_iterator<int>(),
-		v3.begin());
+		std::back_inserter(v3));
 	std::copy(v3.begin(), v3.end(),
 		std::ostream_iterator<int>(std::cout, " "));
 	std::cout << std::endl;

@@ -11,6 +11,7 @@
 #include <algorithm>
 #include <iterator>
 #include <functional>
+#include <list>
 
 class CalcException : public std::exception
 {
@@ -291,6 +292,81 @@ int main()
 	{
 		it->Print();
 	}
+
+	std::cout << "=====================================" << "\n";
+
+	std::list<int> list = { 2, 6, 4, 8, 25, 14, 4, 8, 7};
+
+	std::list<int>::iterator startIt = list.begin();
+	std::advance(startIt, 5);
+
+	std::list<int>::iterator it1 = std::find(startIt, list.end(), 4);
+
+	if (it1 != list.end())
+	{
+		std::cout << std::distance(list.begin(), it1)+1 << std::endl;
+		std::cout << *it1 << std::endl;
+	}
+	else
+	{
+		std::cout << "not found\n";
+	}
+
+	std::cout << "=====================================" << "\n";
+
+	list.push_front(5);
+	list.push_back(10);
+	std::copy(list.begin(), list.end(), std::ostream_iterator<int>(std::cout, " "));
+	std::cout << std::endl;
+
+	std::cout << "=====================================" << "\n";
+
+	auto listLambda = [](int const& el)
+	{
+		return el >= 10;
+	};
+
+	list.remove_if(listLambda);
+
+	std::copy(list.begin(), list.end(), 
+		std::ostream_iterator<int>(std::cout, " "));
+	std::cout << std::endl;
+
+	std::cout << "=====================================" << "\n";
+
+	//std::sort(list.begin(), list.end());
+	list.sort();
+
+	std::copy(list.begin(), list.end(),
+		std::ostream_iterator<int>(std::cout, " "));
+	std::cout << std::endl;
+		
+	std::cout << "=====================================" << "\n";
+
+	auto isGreater = [](int& el1, int& el2)
+	{
+		return el1 > el2;
+	};
+
+	list.sort(isGreater);
+
+	std::copy(list.begin(), list.end(),
+		std::ostream_iterator<int>(std::cout, " "));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+
+
+	/*auto remainerEquals = [](int& el1, int& el2)
+	{
+		return (el1 % 3) == (el2 % 3);
+	};*/
+
+	//list.unique(remainerEquals);
+	list.unique();
+	std::copy(list.begin(), list.end(),
+		std::ostream_iterator<int>(std::cout, " "));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
 
 	return 0;
 }

@@ -374,6 +374,10 @@ int main()
 	std::copy(std::istream_iterator<int>(is),
 		std::istream_iterator<int>(),
 		v3.begin());
+	std::copy(v3.begin(), v3.end(),
+		std::ostream_iterator<int>(std::cout, " "));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
 
 	return 0;
 }

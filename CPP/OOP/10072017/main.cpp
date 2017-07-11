@@ -12,6 +12,9 @@
 #include <iterator>
 #include <functional>
 #include <list>
+#include <fstream>
+
+
 
 class CalcException : public std::exception
 {
@@ -225,19 +228,18 @@ void lesson_10_07_2017()
 		std::ostream_iterator<int>(std::cout, " "));
 }
 
-int main()
-{
-	// lesson_10_07_2017();
 
-	std::vector<int> v = { 1, 3, 7, 4, 40, 23, 15, 9, 3};
+void lesson_10_07_2017_2()
+{
+	std::vector<int> v = { 1, 3, 7, 4, 40, 23, 15, 9, 3 };
 
 	int min = 10;
 	int max = 25;
 
 	std::function<bool(int&)> lambda = [&min, &max](int& el)
 	{
-		
-		return (el>=min && el<=max);
+
+		return (el >= min && el <= max);
 	};
 
 	auto it = std::remove_if(v.begin(), v.end(), lambda);
@@ -252,12 +254,12 @@ int main()
 	std::cout << std::endl;
 
 	min = 0;
-	max = 10;	
+	max = 10;
 	std::copy_if(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "), lambda);
 	std::cout << std::endl;
 
-	std::vector<Student> students = {Student("Ivanov", 5), Student("Azarenko", 8), Student("Kozlov", 8) ,
-		Student("Eroshenko", 3), Student("Belkin", 4), Student("Shukerman", 6)};
+	std::vector<Student> students = { Student("Ivanov", 5), Student("Azarenko", 8), Student("Kozlov", 8) ,
+		Student("Eroshenko", 3), Student("Belkin", 4), Student("Shukerman", 6) };
 
 	std::sort(students.begin(), students.end());
 	for (auto it = students.begin(); it != students.end(); ++it)
@@ -265,7 +267,7 @@ int main()
 		it->Print();
 	}
 
-	
+
 
 	std::function<bool(Student const&, Student const&)> compareByRating =
 		[](Student const& st1, Student const& st2)
@@ -286,7 +288,7 @@ int main()
 
 	std::cout << "=====================================" << "\n";
 
-	std::sort(students.begin(), students.end(),	std::greater<Student>());
+	std::sort(students.begin(), students.end(), std::greater<Student>());
 
 	for (auto it = students.begin(); it != students.end(); ++it)
 	{
@@ -295,7 +297,7 @@ int main()
 
 	std::cout << "=====================================" << "\n";
 
-	std::list<int> list = { 2, 6, 4, 8, 25, 14, 4, 8, 7};
+	std::list<int> list = { 2, 6, 4, 8, 25, 14, 4, 8, 7 };
 
 	std::list<int>::iterator startIt = list.begin();
 	std::advance(startIt, 5);
@@ -304,7 +306,7 @@ int main()
 
 	if (it1 != list.end())
 	{
-		std::cout << std::distance(list.begin(), it1)+1 << std::endl;
+		std::cout << std::distance(list.begin(), it1) + 1 << std::endl;
 		std::cout << *it1 << std::endl;
 	}
 	else
@@ -328,7 +330,7 @@ int main()
 
 	list.remove_if(listLambda);
 
-	std::copy(list.begin(), list.end(), 
+	std::copy(list.begin(), list.end(),
 		std::ostream_iterator<int>(std::cout, " "));
 	std::cout << std::endl;
 
@@ -340,7 +342,7 @@ int main()
 	std::copy(list.begin(), list.end(),
 		std::ostream_iterator<int>(std::cout, " "));
 	std::cout << std::endl;
-		
+
 	std::cout << "=====================================" << "\n";
 
 	auto isGreater = [](int& el1, int& el2)
@@ -358,7 +360,7 @@ int main()
 
 	/*auto remainerEquals = [](int& el1, int& el2)
 	{
-		return (el1 % 3) == (el2 % 3);
+	return (el1 % 3) == (el2 % 3);
 	};*/
 
 	//list.unique(remainerEquals);
@@ -378,6 +380,85 @@ int main()
 		std::ostream_iterator<int>(std::cout, " "));
 	std::cout << std::endl;
 	std::cout << "=====================================" << "\n";
+}
+
+//void createFile()
+//{
+//	std::ofstream os("song.txt", std::ios::out | std::ios::trunc);
+//	os << "we all live in a yellow submarine yellow submarine yellow submarine";
+//}
+
+
+int main()
+{
+	// lesson_10_07_2017();
+	// lesson_10_07_2017_2();
+	
+	//createFile();
+
+	std::vector<std::string> words;
+
+	std::ifstream is("song.txt", std::ios::in);
+
+	/* while (!is.eof())
+	{
+	std::string buffer;
+	is >> buffer;
+	words.push_back(buffer);
+	} */
+
+	std::function<bool(std::string const&)>lambda = [](std::string const& st)
+	{
+		char buff = st[0];
+		if (buff == 'a' || buff == 'e' || buff == 'y'
+			|| buff == 'u' || buff == 'i'
+			|| buff == 'o')
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+
+	};
+
+	//std::copy_if(std::istream_iterator<std::string>(is),
+	//  std::istream_iterator<std::string>(),
+	//  std::back_inserter(words), lambda);
+	std::copy(std::istream_iterator<std::string>(is),
+		std::istream_iterator<std::string>(),
+		std::back_inserter(words));
+	auto iter = std::remove_if(words.begin(), words.end(), std::not1(lambda));
+	words.erase(iter, words.end());
+
+	std::copy(words.begin(), words.end(),
+		std::ostream_iterator<std::string>(std::cout, " "));	
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+
+
+	auto it = std::unique(words.begin(), words.end());
+	words.erase(it, words.end());	
+	std::copy(words.begin(), words.end(),
+		std::ostream_iterator<std::string>(std::cout, " "));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+	
+
+	auto lambda2 = [](std::string const& w1, std::string const& w2)
+	{
+		return w1.size() < w2.size();
+
+	};
+
+	std::sort(words.begin(), words.end(),lambda2);
+
+	std::copy(words.begin(), words.end(),
+		std::ostream_iterator<std::string>(std::cout, " "));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+
 
 	return 0;
 }

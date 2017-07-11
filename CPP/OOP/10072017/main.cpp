@@ -503,7 +503,15 @@ int main()
 		std::bind(less, std::placeholders::_2,
 			std::placeholders::_1);
 
-	std::sort(d.begin(), d.end());
+	std::sort(d.begin(), d.end(), std::less<Student>()); //sort
+	std::for_each(d.begin(), d.end(),
+		std::bind(&Student::Print,
+			std::placeholders::_1));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+
+	std::sort(d.begin(), d.end(), std::bind(std::less<Student>(), //sort
+	std::placeholders::_2, std::placeholders::_1));
 	std::for_each(d.begin(), d.end(),
 		std::bind(&Student::Print,
 			std::placeholders::_1));

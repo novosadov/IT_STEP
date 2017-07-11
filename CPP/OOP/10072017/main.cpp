@@ -503,6 +503,12 @@ int main()
 		std::bind(less, std::placeholders::_2,
 			std::placeholders::_1);
 
+	std::sort(d.begin(), d.end());
+	std::for_each(d.begin(), d.end(),
+		std::bind(&Student::Print,
+			std::placeholders::_1));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
 
 	return 0;
 }

@@ -530,5 +530,27 @@ int main()
 	////////////////////////////////////////////////////////////////////////////////*/
 
 
+	std::deque<std::string> names = { "Kozlov", "Eroshenko", "Shukherman" };
+
+	std::vector<Student> students;
+
+	int rating = 6;
+
+	std::function<Student(std::string const&)> createStudent =
+		[&rating](std::string const& name)
+	{
+		return Student(name, rating);
+	};
+
+	std::transform(names.begin(), names.end(),
+		std::back_inserter(students), createStudent);
+	std::for_each(students.begin(), students.end(),
+		std::bind(&Student::Print,
+			std::placeholders::_1));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+
+
+
 	return 0;
 }

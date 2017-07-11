@@ -518,5 +518,17 @@ int main()
 	std::cout << std::endl;
 	std::cout << "=====================================" << "\n";
 
+	
+	/*///////////////////////////////////////////////////////////////////////////////
+
+	std::vector<int> v = { 1, 11, 15, 19, 21, 3 };// старый вариант
+
+	std::copy_if(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "),
+		std::bind(std::logical_and<bool>(),
+			std::bind(std::greater<int>(), std::placeholders::_1, 10),
+			std::bind(std::less<int>(), std::placeholders::_1, 20)));
+	////////////////////////////////////////////////////////////////////////////////*/
+
+
 	return 0;
 }

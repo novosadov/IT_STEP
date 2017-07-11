@@ -13,6 +13,7 @@
 #include <functional>
 #include <list>
 #include <fstream>
+#include <deque>
 
 
 
@@ -247,7 +248,6 @@ void lesson_10_07_2017_2()
 	std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
 	std::cout << std::endl;
 
-
 	it = std::remove(v.begin(), v.end(), 3);
 	v.erase(it, v.end());
 	std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
@@ -267,17 +267,13 @@ void lesson_10_07_2017_2()
 		it->Print();
 	}
 
-
-
 	std::function<bool(Student const&, Student const&)> compareByRating =
 		[](Student const& st1, Student const& st2)
 	{
 		return st1.GetRating() < st2.GetRating();
 	};
 
-
 	std::cout << "=====================================" << "\n";
-
 
 	std::sort(students.begin(), students.end(), compareByRating);
 
@@ -357,7 +353,6 @@ void lesson_10_07_2017_2()
 	std::cout << std::endl;
 	std::cout << "=====================================" << "\n";
 
-
 	/*auto remainerEquals = [](int& el1, int& el2)
 	{
 	return (el1 % 3) == (el2 % 3);
@@ -387,6 +382,18 @@ void lesson_10_07_2017_2()
 //	std::ofstream os("song.txt", std::ios::out | std::ios::trunc);
 //	os << "we all live in a yellow submarine yellow submarine yellow submarine";
 //}
+
+
+int Summ(int a, int b, int c)
+{
+	return a + b + c;
+}
+
+
+bool less(int a, int b)
+{
+	return a < b;
+}
 
 
 int main()
@@ -420,7 +427,6 @@ int main()
 		{
 			return false;
 		}
-
 	};
 
 	//std::copy_if(std::istream_iterator<std::string>(is),
@@ -458,6 +464,44 @@ int main()
 		std::ostream_iterator<std::string>(std::cout, " "));
 	std::cout << std::endl;
 	std::cout << "=====================================" << "\n";
+
+
+	std::deque<Student> d;
+	d.push_front(Student("Ivanov", 7));
+	d.push_front(Student("Azarenko", 5));
+	d.push_front(Student("Petrov", 3));
+
+	auto printStudent = [](Student const& st)
+	{
+		st.Print();
+
+	};
+
+	std::for_each(d.begin(), d.end(),
+		printStudent);
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+
+	std::for_each(d.begin(), d.end(),
+		std::bind(&Student::Print,
+			std::placeholders::_1));
+	std::cout << std::endl;
+	std::cout << "=====================================" << "\n";
+
+	std::function<int(int, int, int)> summ3 = Summ;
+
+	int a = summ3(1, 2, 3);
+
+	std::function<int(int, int)> summ2 =
+		std::bind(summ3, std::placeholders::_1,
+			std::placeholders::_2, 0);
+
+	a = summ2(1, 2);
+
+
+	std:: function<bool(int, int)> greater=
+		std::bind(less, std::placeholders::_2,
+			std::placeholders::_1);
 
 
 	return 0;
